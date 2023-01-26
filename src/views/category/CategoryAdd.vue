@@ -16,10 +16,6 @@ export default {
         return {
             category: {
                 name: null,
-                email: null,
-                address: null,
-                phone: null,
-                favorite: null
             },
             message: "",
         };

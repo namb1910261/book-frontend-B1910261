@@ -50,7 +50,7 @@ export default {
             if (confirm("Bạn muốn xóa Thể loại này?")) {
                 try {
                     await CategoryService.delete(this.category._id);
-                    this.$router.push({ name: "categorybook" });
+                    this.$router.push({ name: "Category" });
                 } catch (error) {
                     console.log(error);
                 }
