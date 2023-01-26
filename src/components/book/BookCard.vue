@@ -22,7 +22,9 @@ export default {
         </div>
         <div class="p-1">
             <strong>Thể loại:</strong>
-            {{ book.category_id.name }}
+            <div v-for="(category) in book.category_id">
+                {{ category.name }}
+            </div>
         </div>
         <div class="p-1">
             <strong>User:</strong>
@@ -30,3 +32,9 @@ export default {
         </div>
     </div>
 </template>
+
+<style>
+    img {
+        height: 300px;
+    }
+</style>

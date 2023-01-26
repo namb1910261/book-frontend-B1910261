@@ -1,4 +1,4 @@
-<template>egory_id
+<template>
     <Form @submit="submitBook" :validation-schema="bookFormSchema">
         <div class="form-group">
             <label for="name">Tên</label>
@@ -11,29 +11,29 @@
                 @change="onFileInput($event)" />
             <ErrorMessage name="image" class="error-feedback" />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="category_id">Thể loại</label>
             <select class="form-control" id="category_id" v-model="bookLocal.category_id">
                 <option v-for="(category) in categorys" :value="category">{{ category.name }}</option>
             </select>
-        </div>
-        <!-- <div class="card bg-white border-0 m-0 p-0 shadow-none">
+        </div> -->
+        <div class="card bg-white border-0 m-0 p-0 shadow-none">
             <label for="category_id">Thể loại</label>
             <div class="card-body">
                 <div class="form-check" v-for="(category) in categorys">
-                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category" 
-                    v-model="bookLocal.category_id">
+                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category" v-model="cate"
+                    @change="onCheckboxInput">
                     <label class="form-check-label" :for="category._id">
                         {{ category.name }}
                     </label>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <div class="form-group form-check">
             <input name="favorite" type="checkbox" class="form-check-input" v-model="bookLocal.favorite" />
             <label for="favorite" class="form-check-label">
-                <strong>Liên hệ yêu thích</strong>
+                <strong>Sách yêu thích</strong>
             </label>
         </div>
         <div class="form-group">
@@ -72,6 +72,7 @@ export default {
         return {
             // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
             // bookLocal để liên kết với các input trên form
+            cate: [],
             bookLocal: this.book,
             bookFormSchema,
         };
@@ -86,6 +87,9 @@ export default {
         onFileInput(event) {
             this.bookLocal.image = event.target.files[0].name;
         },
+        onCheckboxInput(){
+            this.bookLocal.category_id = this.cate;
+        }
     },
 };
 </script>
