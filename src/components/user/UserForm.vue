@@ -15,7 +15,7 @@
             <Field name="password" type="password" class="form-control" v-model="userLocal.password" />
             <ErrorMessage name="password" class="error-feedback" />
         </div>
-        <div class="form-group">
+        <div class="form-group" v-if="$route.name != 'login'">
             <label for="passwordConfirmation">Nhập lại mật khẩu</label>
             <Field name="passwordConfirmation" type="password" class="form-control" />
         </div>
@@ -55,12 +55,7 @@ export default {
                 .string()
                 .required("Mật khẩu không được để trống")
                 .min(8, "Password ít nhất 8 ký tự."),
-            passwordConfirmation: yup
-                .string()
-                .required("Nhập lại mật khẩu không được để trống")
-                .test('passwords-match', 'Mật khẩu phải trùng khớp', function (value) {
-                    return this.parent.password === value
-                })
+            
         });
         return {
             // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ

@@ -26,6 +26,12 @@
                     <i class="fas fa-comments"></i>
                 </router-link>
             </li>       
+            <li class="nav-item">
+                <router-link :to="{ name: 'login' }" class="nav-link">
+                    Đăng nhập
+                    <i class="fas fa-sign-in"></i>
+                </router-link>
+            </li>       
         </div>
     </nav>
 </template>
