@@ -5,34 +5,34 @@
         </div>
         <div class="mt-3 col-md-6">
             <h4>
-                Sách
-                <i class="fas fa-book"></i>
+                User
+                <i class="fas fa-user"></i>
             </h4>
-            <BookList v-if="filteredBooksCount > 0" :books="filteredBooks"
+            <UserList v-if="filteredUsersCount > 0" :users="filteredUsers"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có liên hệ nào.</p>
             <div class="mt-3 row justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
-                <button class="btn btn-sm btn-success" @click="goToAddBook">
+                <button class="btn btn-sm btn-success" @click="goToAddUser">
                     <i class="fas fa-plus"></i> Thêm mới
                 </button>
-                <button class="btn btn-sm btn-danger" @click="removeAllBooks">
+                <button class="btn btn-sm btn-danger" @click="removeAllUsers">
                     <i class="fas fa-trash"></i> Xóa tất cả
                 </button>
             </div>
         </div>
         <div class="mt-3 col-md-6">
-            <div v-if="activeBook">
+            <div v-if="activeUser">
                 <h4>
-                    Chi tiết Sách
+                    Chi tiết Thể loại
                     <i class="fas fa-address-card"></i>
                 </h4>
-                <BookCard :book="activeBook" />
+                <UserCard :user="activeUser" />
                 <router-link :to="{
-                    name: 'book.edit',
-                    params: { id: activeBook._id },
+                    name: 'user.edit',
+                    params: { id: activeUser._id },
                 }">
                     <span class="mt-2 badge badge-warning">
                         <i class="fas fa-edit"></i> Hiệu chỉnh</span>
@@ -42,20 +42,20 @@
     </div>
 </template>
 <script>
-import BookCard from "@/components/book/BookCard.vue";
+import UserCard from "@/components/user/UserCard.vue";
 import InputSearch from "@/components/InputSearch.vue";
-import BookList from "@/components/book/BookList.vue";
-import BookService from "@/services/book.service";
+import UserList from "@/components/user/UserList.vue";
+import UserService from "@/services/user.service";
 export default {
     components: {
-        BookCard,
+        UserCard,
         InputSearch,
-        BookList,
+        UserList,
     },
     // Đoạn mã xử lý đầy đủ sẽ trình bày bên dưới
     data() {
         return {
-            books: [],
+            users: [],
             activeIndex: -1,
             searchText: "",
         };
@@ -68,46 +68,46 @@ export default {
         },
     },
     computed: {
-        // Chuyển các đối tượng book thành chuỗi để tiện cho tìm kiếm.
-        bookStrings() {
-            return this.books.map((book) => {
-                const { name, email, address, phone } = book;
-                return [name, email, address, phone].join("");
+        // Chuyển các đối tượng user thành chuỗi để tiện cho tìm kiếm.
+        userStrings() {
+            return this.users.map((user) => {
+                const { name, email, password, } = user;
+                return [name, email, password, ].join("");
             });
         },
-        // Trả về các book có chứa thông tin cần tìm kiếm.
-        filteredBooks() {
-            if (!this.searchText) return this.books;
-            return this.books.filter((_book, index) =>
-                this.bookStrings[index].includes(this.searchText)
+        // Trả về các user có chứa thông tin cần tìm kiếm.
+        filteredUsers() {
+            if (!this.searchText) return this.users;
+            return this.users.filter((_user, index) =>
+                this.userStrings[index].includes(this.searchText)
             );
         },
-        activeBook() {
+        activeUser() {
             if (this.activeIndex < 0) return null;
-            return this.filteredBooks[this.activeIndex];
+            return this.filteredUsers[this.activeIndex];
         },
-        filteredBooksCount() {
-            return this.filteredBooks.length;
+        filteredUsersCount() {
+            return this.filteredUsers.length;
         },
     },
     methods: {
-        async retrieveBooks() {
+        async retrieveUsers() {
             try {
-                this.books = await BookService.getAll();
+                this.users = await UserService.getAll();
             } catch (error) {
                 console.log(error);
             }
         },
 
         refreshList() {
-            this.retrieveBooks();
+            this.retrieveUsers();
             this.activeIndex = -1;
         },
 
-        async removeAllBooks() {
-            if (confirm("Bạn muốn xóa tất cả Sách?")) {
+        async removeAllUsers() {
+            if (confirm("Bạn muốn xóa tất cả User?")) {
                 try {
-                    await BookService.deleteAll();
+                    await UserService.deleteAll();
                     this.refreshList();
                 } catch (error) {
                     console.log(error);
@@ -115,8 +115,8 @@ export default {
             }
         },
 
-        goToAddBook() {
-            this.$router.push({ name: "book.add" });
+        goToAddUser() {
+            this.$router.push({ name: "user.add" });
         },
     },
     mounted() {

@@ -14,6 +14,12 @@
                     <i class="fas fa-book"></i>
                 </router-link>
             </li>       
+            <li class="nav-item">
+                <router-link :to="{ name: 'user' }" class="nav-link">
+                    User
+                    <i class="fas fa-user"></i>
+                </router-link>
+            </li>       
         </div>
     </nav>
 </template>

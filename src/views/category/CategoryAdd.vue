@@ -25,6 +25,7 @@ export default {
             try {
                 await CategoryService.create(data);
                 this.message = "Thể loại được thêm thành công.";
+                this.$router.push({ name: "category" });
             } catch (error) {
                 console.log(error);
             }

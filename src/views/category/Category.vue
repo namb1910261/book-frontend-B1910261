@@ -6,7 +6,7 @@
         <div class="mt-3 col-md-6">
             <h4>
                 Thể loại
-                <i class="fas fa-address-book"></i>
+                <i class="fas fa-list-alt"></i>
             </h4>
             <CategoryList v-if="filteredCategorysCount > 0" :categorys="filteredCategorys"
                 v-model:activeIndex="activeIndex" />
@@ -26,7 +26,7 @@
         <div class="mt-3 col-md-6">
             <div v-if="activeCategory">
                 <h4>
-                    Chi tiết Liên hệ
+                    Chi tiết Thể loại
                     <i class="fas fa-address-card"></i>
                 </h4>
                 <CategoryCard :category="activeCategory" />
@@ -105,7 +105,7 @@ export default {
         },
 
         async removeAllCategorys() {
-            if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
+            if (confirm("Bạn muốn xóa tất cả Thể loại?")) {
                 try {
                     await CategoryService.deleteAll();
                     this.refreshList();
