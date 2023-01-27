@@ -5,34 +5,34 @@
         </div>
         <div class="mt-3 col-md-6">
             <h4>
-                Thể loại
+                Review
                 <i class="fas fa-list-alt"></i>
             </h4>
-            <CategoryList v-if="filteredCategorysCount > 0" :categorys="filteredCategorys"
+            <ReviewList v-if="filteredReviewsCount > 0" :reviews="filteredReviews"
                 v-model:activeIndex="activeIndex" />
-            <p v-else>Không có thể loại nào.</p>
+            <p v-else>Không có review nào.</p>
             <div class="mt-3 row justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
-                <button class="btn btn-sm btn-success" @click="goToAddCategory">
+                <!-- <button class="btn btn-sm btn-success" @click="goToAddReview">
                     <i class="fas fa-plus"></i> Thêm mới
-                </button>
-                <button class="btn btn-sm btn-danger" @click="removeAllCategorys">
+                </button> -->
+                <button class="btn btn-sm btn-danger" @click="removeAllReviews">
                     <i class="fas fa-trash"></i> Xóa tất cả
                 </button>
             </div>
         </div>
         <div class="mt-3 col-md-6">
-            <div v-if="activeCategory">
+            <div v-if="activeReview">
                 <h4>
-                    Chi tiết Thể loại
+                    Chi tiết Review
                     <i class="fas fa-address-card"></i>
                 </h4>
-                <CategoryCard :category="activeCategory" />
+                <ReviewCard :review="activeReview" />
                 <router-link :to="{
-                    name: 'category.edit',
-                    params: { id: activeCategory._id },
+                    name: 'review.edit',
+                    params: { id: activeReview._id },
                 }">
                     <span class="mt-2 badge badge-warning">
                         <i class="fas fa-edit"></i> Hiệu chỉnh</span>
@@ -42,20 +42,20 @@
     </div>
 </template>
 <script>
-import CategoryCard from "@/components/category/CategoryCard.vue";
+import ReviewCard from "@/components/review/ReviewCard.vue";
 import InputSearch from "@/components/InputSearch.vue";
-import CategoryList from "@/components/category/CategoryList.vue";
-import CategoryService from "@/services/category.service";
+import ReviewList from "@/components/review/ReviewList.vue";
+import ReviewService from "@/services/review.service";
 export default {
     components: {
-        CategoryCard,
+        ReviewCard,
         InputSearch,
-        CategoryList,
+        ReviewList,
     },
     // Đoạn mã xử lý đầy đủ sẽ trình bày bên dưới
     data() {
         return {
-            categorys: [],
+            reviews: [],
             activeIndex: -1,
             searchText: "",
         };
@@ -68,46 +68,46 @@ export default {
         },
     },
     computed: {
-        // Chuyển các đối tượng category thành chuỗi để tiện cho tìm kiếm.
-        categoryStrings() {
-            return this.categorys.map((category) => {
-                const { name, email, address, phone } = category;
-                return [name, email, address, phone].join("");
+        // Chuyển các đối tượng review thành chuỗi để tiện cho tìm kiếm.
+        reviewStrings() {
+            return this.reviews.map((review) => {
+                const { name, content, book_id } = review;
+                return [name, content, book_id].join("");
             });
         },
-        // Trả về các category có chứa thông tin cần tìm kiếm.
-        filteredCategorys() {
-            if (!this.searchText) return this.categorys;
-            return this.categorys.filter((_category, index) =>
-                this.categoryStrings[index].includes(this.searchText)
+        // Trả về các review có chứa thông tin cần tìm kiếm.
+        filteredReviews() {
+            if (!this.searchText) return this.reviews;
+            return this.reviews.filter((_review, index) =>
+                this.reviewStrings[index].includes(this.searchText)
             );
         },
-        activeCategory() {
+        activeReview() {
             if (this.activeIndex < 0) return null;
-            return this.filteredCategorys[this.activeIndex];
+            return this.filteredReviews[this.activeIndex];
         },
-        filteredCategorysCount() {
-            return this.filteredCategorys.length;
+        filteredReviewsCount() {
+            return this.filteredReviews.length;
         },
     },
     methods: {
-        async retrieveCategorys() {
+        async retrieveReviews() {
             try {
-                this.categorys = await CategoryService.getAll();
+                this.reviews = await ReviewService.getAll();
             } catch (error) {
                 console.log(error);
             }
         },
 
         refreshList() {
-            this.retrieveCategorys();
+            this.retrieveReviews();
             this.activeIndex = -1;
         },
 
-        async removeAllCategorys() {
-            if (confirm("Bạn muốn xóa tất cả Thể loại?")) {
+        async removeAllReviews() {
+            if (confirm("Bạn muốn xóa tất cả Review?")) {
                 try {
-                    await CategoryService.deleteAll();
+                    await ReviewService.deleteAll();
                     this.refreshList();
                 } catch (error) {
                     console.log(error);
@@ -115,8 +115,8 @@ export default {
             }
         },
 
-        goToAddCategory() {
-            this.$router.push({ name: "category.add" });
+        goToAddReview() {
+            this.$router.push({ name: "review.add" });
         },
     },
     mounted() {

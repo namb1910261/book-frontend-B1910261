@@ -21,7 +21,7 @@
             <label for="category_id">Thể loại</label>
             <div class="card-body">
                 <div class="form-check" v-for="(category) in categorys">
-                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category" v-model="cate"
+                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category._id" v-model="cate"
                     @change="onCheckboxInput">
                     <label class="form-check-label" :for="category._id">
                         {{ category.name }}
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="form-group form-check">
             <input name="favorite" type="checkbox" class="form-check-input" v-model="bookLocal.favorite" />
             <label for="favorite" class="form-check-label">

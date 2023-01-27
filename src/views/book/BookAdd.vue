@@ -54,6 +54,7 @@ export default {
             try {
                 await BookService.create(data);
                 this.message = "Sách được thêm thành công.";
+                this.$router.push({ name: "book" });
             } catch (error) {
                 console.log(error);
             }

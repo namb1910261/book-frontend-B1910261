@@ -10,7 +10,7 @@
             </h4>
             <UserList v-if="filteredUsersCount > 0" :users="filteredUsers"
                 v-model:activeIndex="activeIndex" />
-            <p v-else>Không có liên hệ nào.</p>
+            <p v-else>Không có user nào.</p>
             <div class="mt-3 row justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới

@@ -20,6 +20,12 @@
                     <i class="fas fa-user"></i>
                 </router-link>
             </li>       
+            <li class="nav-item">
+                <router-link :to="{ name: 'review' }" class="nav-link">
+                    Review
+                    <i class="fas fa-comments"></i>
+                </router-link>
+            </li>       
         </div>
     </nav>
 </template>

@@ -1,30 +1,30 @@
 <template>
-    <div v-if="category" class="page">
-        <h4>Hiệu chỉnh Thể loại</h4>
-        <CategoryForm :category="category" @submit:category="updateCategory" @delete:category="deleteCategory" />
+    <div v-if="review" class="page">
+        <h4>Hiệu chỉnh Review</h4>
+        <ReviewForm :review="review" @submit:review="updateReview" @delete:review="deleteReview" />
         <p>{{ message }}</p>
     </div>
 </template>
 <script>
-import CategoryForm from "@/components/category/CategoryForm.vue";
-import CategoryService from "@/services/category.service";
+import ReviewForm from "@/components/review/ReviewForm.vue";
+import ReviewService from "@/services/review.service";
 export default {
     components: {
-        CategoryForm,
+        ReviewForm,
     },
     props: {
         id: { type: String, required: true },
     },
     data() {
         return {
-            category: null,
+            review: null,
             message: "",
         };
     },
     methods: {
-        async getCategory(id) {
+        async getReview(id) {
             try {
-                this.category = await CategoryService.get(id);
+                this.review = await ReviewService.get(id);
             } catch (error) {
                 console.log(error);
                 // Chuyển sang trang NotFound đồng thời giữ cho URL không đổi
@@ -38,20 +38,20 @@ export default {
                 });
             }
         },
-        async updateCategory(data) {
+        async updateReview(data) {
             try {
-                await CategoryService.update(this.category._id, data);
-                this.message = "Thể loại được cập nhật thành công.";
-                this.$router.push({ name: "category" });
+                await ReviewService.update(this.review._id, data);
+                this.message = "Review được cập nhật thành công.";
+                this.$router.push({ name: "review" });
             } catch (error) {
                 console.log(error);
             }
         },
-        async deleteCategory() {
-            if (confirm("Bạn muốn xóa Thể loại này?")) {
+        async deleteReview() {
+            if (confirm("Bạn muốn xóa Review này?")) {
                 try {
-                    await CategoryService.delete(this.category._id);
-                    this.$router.push({ name: "category" });
+                    await ReviewService.delete(this.review._id);
+                    this.$router.push({ name: "review" });
                 } catch (error) {
                     console.log(error);
                 }
@@ -59,7 +59,7 @@ export default {
         },
     },
     created() {
-        this.getCategory(this.id);
+        this.getReview(this.id);
         this.message = "";
     },
 };

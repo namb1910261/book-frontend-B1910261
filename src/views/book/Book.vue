@@ -10,7 +10,7 @@
             </h4>
             <BookList v-if="filteredBooksCount > 0" :books="filteredBooks"
                 v-model:activeIndex="activeIndex" />
-            <p v-else>Không có liên hệ nào.</p>
+            <p v-else>Không có sách nào.</p>
             <div class="mt-3 row justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
@@ -36,6 +36,13 @@
                 }">
                     <span class="mt-2 badge badge-warning">
                         <i class="fas fa-edit"></i> Hiệu chỉnh</span>
+                </router-link>
+                <router-link :to="{
+                    name: 'review.add',
+                    params: { id: activeBook._id },
+                }">
+                    <span class="mt-2 badge badge-primary">
+                        <i class="fas fa-comments"></i> Tạo review</span>
                 </router-link>
             </div>
         </div>

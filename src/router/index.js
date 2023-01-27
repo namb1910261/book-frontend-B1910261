@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Category from "@/views/category/Category.vue";
 import Book from "@/views/book/Book.vue";
 import User from "@/views/user/User.vue";
+import Review from "@/views/review/Review.vue";
 const routes = [
     // Not found 
     {
@@ -64,6 +65,24 @@ const routes = [
         path: "/user/add",
         name: "user.add",
         component: () => import("@/views/user/UserAdd.vue"),
+    },
+    // review
+    {
+        path: "/review",
+        name: "review",
+        component: Review,
+    },
+    {
+        path: "/reviews/:id",
+        name: "review.edit",
+        component: () => import("@/views/review/ReviewEdit.vue"),
+        props: true // Truyền các biến trong $route.params vào làm props
+    },
+    {
+        path: "/review/add/:id",
+        name: "review.add",
+        component: () => import("@/views/review/ReviewAdd.vue"),
+        props: true // Truyền các biến trong $route.params vào làm props
     },
 ];
 const router = createRouter({

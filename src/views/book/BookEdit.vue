@@ -66,6 +66,7 @@ export default {
             try {
                 await BookService.update(this.book._id, data);
                 this.message = "Sách được cập nhật thành công.";
+                this.$router.push({ name: "book" });
             } catch (error) {
                 console.log(error);
             }
@@ -74,7 +75,7 @@ export default {
             if (confirm("Bạn muốn xóa Sách này?")) {
                 try {
                     await BookService.delete(this.book._id);
-                    this.$router.push({ name: "Book" });
+                    this.$router.push({ name: "book" });
                 } catch (error) {
                     console.log(error);
                 }
