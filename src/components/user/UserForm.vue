@@ -10,14 +10,16 @@
             <Field name="email" type="text" class="form-control" v-model="userLocal.email" />
             <ErrorMessage name="email" class="error-feedback" />
         </div>
-        <div class="form-group">
-            <label for="password">Mật khẩu</label>
-            <Field name="password" type="password" class="form-control" v-model="userLocal.password" />
-            <ErrorMessage name="password" class="error-feedback" />
-        </div>
-        <div class="form-group" v-if="$route.name != 'login'">
-            <label for="passwordConfirmation">Nhập lại mật khẩu</label>
-            <Field name="passwordConfirmation" type="password" class="form-control" />
+        <div v-if="!userLocal._id">
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <Field name="password" type="password" class="form-control" v-model="userLocal.password"/>
+                <ErrorMessage name="password" class="error-feedback" />
+            </div>
+            <div class="form-group" v-if="$route.name != 'login'">
+                <label for="passwordConfirmation">Nhập lại mật khẩu</label>
+                <Field name="passwordConfirmation" type="password" class="form-control" />
+            </div>
         </div>
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
@@ -51,11 +53,7 @@ export default {
                 .string()
                 .email("E-mail không đúng.")
                 .max(50, "E-mail tối đa 50 ký tự."),
-            password: yup
-                .string()
-                .required("Mật khẩu không được để trống")
-                .min(8, "Password ít nhất 8 ký tự."),
-            
+
         });
         return {
             // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ

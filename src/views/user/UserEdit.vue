@@ -42,6 +42,7 @@ export default {
             try {
                 await UserService.update(this.user._id, data);
                 this.message = "User được cập nhật thành công.";
+                this.$router.push({ name: "user" });
             } catch (error) {
                 console.log(error);
             }
@@ -50,7 +51,7 @@ export default {
             if (confirm("Bạn muốn xóa User này?")) {
                 try {
                     await UserService.delete(this.user._id);
-                    this.$router.push({ name: "User" });
+                    this.$router.push({ name: "user" });
                 } catch (error) {
                     console.log(error);
                 }

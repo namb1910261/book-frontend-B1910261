@@ -1,6 +1,6 @@
 <template>
     <div v-if="user" class="page">
-        <h4>Thêm User</h4>
+        <h4>Đăng nhập</h4>
         <UserForm :user="user" @submit:user="checkUser" />
         <p>{{ message }}</p>
     </div>
@@ -34,7 +34,7 @@ export default {
                 const passphrase = '123456'
 
                 this.users = await UserService.getAll();
-                
+
                 for (var i = 0; i < this.users.length; i++) {
                     if (this.users[i].name != data.name) {
                         this.message = "Username không tồn tại .";
@@ -51,6 +51,9 @@ export default {
                             }
                             else {
                                 this.message = "Đăng nhập thành công .";
+                                localStorage.setItem('username', this.users[i].name);
+                                localStorage.setItem('isLogin', true);
+                                this.$router.go()
                                 this.$router.push({ name: "category" });
                                 break;
                             }

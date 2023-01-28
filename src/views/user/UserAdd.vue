@@ -1,6 +1,6 @@
 <template>
     <div v-if="user" class="page">
-        <h4>Thêm User</h4>
+        <h4>Đăng ký</h4>
         <UserForm :user="user" @submit:user="addUser" />
         <p>{{ message }}</p>
     </div>

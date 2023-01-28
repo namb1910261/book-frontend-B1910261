@@ -15,9 +15,9 @@
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
-                <button class="btn btn-sm btn-success" @click="goToAddUser">
+                <!-- <button class="btn btn-sm btn-success" @click="goToAddUser">
                     <i class="fas fa-plus"></i> Thêm mới
-                </button>
+                </button> -->
                 <button class="btn btn-sm btn-danger" @click="removeAllUsers">
                     <i class="fas fa-trash"></i> Xóa tất cả
                 </button>
@@ -26,7 +26,7 @@
         <div class="mt-3 col-md-6">
             <div v-if="activeUser">
                 <h4>
-                    Chi tiết Thể loại
+                    Chi tiết User
                     <i class="fas fa-address-card"></i>
                 </h4>
                 <UserCard :user="activeUser" />
