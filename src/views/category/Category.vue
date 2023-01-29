@@ -1,17 +1,17 @@
 <template>
-    <div class="page row">
+    <div class="row">
         <div class="col-md-10">
             <InputSearch v-model="searchText" />
         </div>
-        <div class="mt-3 col-md-6">
-            <h4>
+        <div class="mt-3 col-md-4">
+            <h4 class="card-label">
                 Thể loại
                 <i class="fas fa-list-alt"></i>
             </h4>
             <CategoryList v-if="filteredCategorysCount > 0" :categorys="filteredCategorys"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có thể loại nào.</p>
-            <div class="mt-3 row justify-content-around align-items-center">
+            <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
@@ -23,19 +23,19 @@
                 </button>
             </div>
         </div>
-        <div class="mt-3 col-md-6">
+        <div class="mt-3 col-md-7">
             <div v-if="activeCategory">
                 <h4>
                     Chi tiết Thể loại
-                    <i class="fas fa-address-card"></i>
+                    <i class="fas fa-list-alt"></i>
                 </h4>
                 <CategoryCard :category="activeCategory" />
                 <router-link :to="{
                     name: 'category.edit',
                     params: { id: activeCategory._id },
                 }">
-                    <span class="mt-2 badge badge-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</span>
+                    <button class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
                 </router-link>
             </div>
         </div>

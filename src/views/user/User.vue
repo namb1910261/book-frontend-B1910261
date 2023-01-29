@@ -11,7 +11,7 @@
             <UserList v-if="filteredUsersCount > 0" :users="filteredUsers"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có user nào.</p>
-            <div class="mt-3 row justify-content-around align-items-center">
+            <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
@@ -34,8 +34,8 @@
                     name: 'user.edit',
                     params: { id: activeUser._id },
                 }">
-                    <span class="mt-2 badge badge-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</span>
+                    <button class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
                 </router-link>
             </div>
         </div>

@@ -1,9 +1,9 @@
 <template>
-    <div class="page row">
+    <div class="row">
         <div class="col-md-10">
             <InputSearch v-model="searchText" />
         </div>
-        <div class="mt-3 col-md-6">
+        <div class="mt-3 col-md-4">
             <h4>
                 Sách
                 <i class="fas fa-book"></i>
@@ -11,7 +11,7 @@
             <BookList v-if="filteredBooksCount > 0" :books="filteredBooks"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có sách nào.</p>
-            <div class="mt-3 row justify-content-around align-items-center">
+            <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
@@ -23,26 +23,27 @@
                 </button>
             </div>
         </div>
-        <div class="mt-3 col-md-6">
+        <div class="mt-3 col-md-7">
             <div v-if="activeBook">
                 <h4>
                     Chi tiết Sách
-                    <i class="fas fa-address-card"></i>
+                    <i class="fas fa-book"></i>
                 </h4>
                 <BookCard :book="activeBook" />
                 <router-link :to="{
                     name: 'book.edit',
                     params: { id: activeBook._id },
                 }">
-                    <span class="mt-2 badge badge-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</span>
+                    <button class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
                 </router-link>
+                
                 <router-link :to="{
                     name: 'review.add',
                     params: { id: activeBook._id },
                 }">
-                    <span class="mt-2 badge badge-primary">
-                        <i class="fas fa-comments"></i> Tạo review</span>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-comments"></i> Tạo review</button>
                 </router-link>
             </div>
         </div>

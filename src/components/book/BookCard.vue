@@ -1,9 +1,11 @@
 <script>
 import CategoryService from "@/services/category.service";
+import UserService from "@/services/user.service";
 export default {
     data() {
         return {
             categorys: [],
+            users: [],
         };
     },
     props: {
@@ -17,40 +19,59 @@ export default {
                 console.log(error);
             }
         },
+        async retrieveUsers() {
+            try {
+                this.users = await UserService.getAll();
+            } catch (error) {
+                console.log(error);
+            }
+        },
     },
     mounted() {
         this.retrieveCategorys();
+        this.retrieveUsers();
     },
 };
 </script>
 <template>
-    <div>
-        <div class="p-1">
-            <strong>Tên:</strong>
-            {{ book.name }}
-        </div>
-        <div class="p-1">
-            <strong>Hình:</strong>
-            <br>
-            <img :src="'./book_image/' + book.image" :alt="book.name">
-        </div>
-        <div class="p-1">
-            <strong>Yêu thích:</strong>
-            {{ book.favorite }}
-        </div>
-        <div class="p-1">
-            <strong>Thể loại:</strong>
-            <div v-for="(category) in book.category_id">
-                <div v-for="(cate) in categorys">
-                    <div v-if="category == cate._id">
-                        {{ cate.name }}
+    <div class="d-flex my-1">
+        <img :src="'./book_image/' + book.image" :alt="book.name">
+        <div class="card rounded-0 col-10">
+            <div class="card-header">
+                <b>{{ book.name }}</b>
+            </div>
+            <div class="card-body">
+                <div class="d-flex">
+                    <div>
+                        <div class="p-1">
+                            <strong>Tên:</strong>
+                            {{ book.name }}
+                        </div>
+                        <div class="p-1">
+                            <strong>Yêu thích:</strong>
+                            {{ book.favorite }}
+                        </div>
+                        <div class="p-1 d-flex">
+                            <strong>Thể loại:</strong>
+                            <div v-for="(category) in book.category_id" class="mx-1">
+                                <div v-for="(cate) in categorys">
+                                    <div v-if="category == cate._id">
+                                        {{ cate.name }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-1 d-flex">
+                            <strong>User:</strong>
+                            <div v-for="(user) in users" class="mx-1">
+                                <div v-if="user._id == book.user_id">
+                                    {{ user.name }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="p-1">
-            <strong>User:</strong>
-            {{ book.user_id }}
         </div>
     </div>
 </template>

@@ -1,17 +1,17 @@
 <template>
-    <div class="page row">
+    <div class="row">
         <div class="col-md-10">
             <InputSearch v-model="searchText" />
         </div>
-        <div class="mt-3 col-md-6">
+        <div class="mt-3 col-md-4">
             <h4>
                 Review
-                <i class="fas fa-list-alt"></i>
+                <i class="fas fa-comments"></i>
             </h4>
             <ReviewList v-if="filteredReviewsCount > 0" :reviews="filteredReviews"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có review nào.</p>
-            <div class="mt-3 row justify-content-around align-items-center">
+            <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
@@ -23,19 +23,19 @@
                 </button>
             </div>
         </div>
-        <div class="mt-3 col-md-6">
+        <div class="mt-3 col-md-7">
             <div v-if="activeReview">
                 <h4>
                     Chi tiết Review
-                    <i class="fas fa-address-card"></i>
+                    <i class="fas fa-comments"></i>
                 </h4>
                 <ReviewCard :review="activeReview" />
                 <router-link :to="{
                     name: 'review.edit',
                     params: { id: activeReview._id },
                 }">
-                    <span class="mt-2 badge badge-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</span>
+                    <button class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
                 </router-link>
             </div>
         </div>
@@ -71,8 +71,8 @@ export default {
         // Chuyển các đối tượng review thành chuỗi để tiện cho tìm kiếm.
         reviewStrings() {
             return this.reviews.map((review) => {
-                const { name, content, book_id } = review;
-                return [name, content, book_id].join("");
+                const { name, content, book_id, user_id } = review;
+                return [name, content, book_id, user_id].join("");
             });
         },
         // Trả về các review có chứa thông tin cần tìm kiếm.

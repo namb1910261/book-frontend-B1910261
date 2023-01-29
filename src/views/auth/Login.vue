@@ -52,6 +52,7 @@ export default {
                             else {
                                 this.message = "Đăng nhập thành công .";
                                 localStorage.setItem('username', this.users[i].name);
+                                localStorage.setItem('userid', this.users[i]._id);
                                 localStorage.setItem('isLogin', true);
                                 this.$router.go()
                                 this.$router.push({ name: "category" });

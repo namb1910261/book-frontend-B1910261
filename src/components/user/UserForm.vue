@@ -21,6 +21,7 @@
                 <Field name="passwordConfirmation" type="password" class="form-control" />
             </div>
         </div>
+        <br>
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button v-if="userLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteUser">

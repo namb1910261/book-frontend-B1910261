@@ -1,54 +1,38 @@
 <template>
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/" class="navbar-brand">Ứng dụng Quản lý sách</a>
-        <div class="navbar-nav mr-auto">
-            <div class="d-flex" v-if="isLogin == 'true'">
-                <li class="nav-item">
-                    <router-link :to="{ name: 'category' }" class="nav-link">
-                        Thể loại
-                        <i class="fas fa-list-alt"></i>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4" v-if="isLogin != 'true'">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#"><b>Ứng dụng Review sách</b></a> -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <div class="d-flex" v-if="isLogin != 'true'">
+                        <router-link :to="{ name: 'login' }" class="nav-link">
+                            <li class="nav-item">
+                                Đăng nhập
+                            </li>
+                        </router-link>
+                        <a class="nav-link">
+                            <li class="nav-item">
+                                |
+                            </li>
+                        </a>
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'user.add' }" class="nav-link">
+                                Đăng ký
+                            </router-link>
+                        </li>
+                    </div>
+                </ul>
+                <!-- <div class="d-flex" v-if="isLogin == 'true'">
+                    <router-link :to="{ name: 'user' }" class="nav-link">
+                        <b>{{ username }}</b>
+                        <i class="fas fa-user"></i>
                     </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link :to="{ name: 'book' }" class="nav-link">
-                        Sách
-                        <i class="fas fa-book"></i>
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link :to="{ name: 'review' }" class="nav-link">
-                        Review
-                        <i class="fas fa-comments"></i>
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                </li>
-            </div>
-            <div class="d-flex my-2 my-lg-0" v-if="isLogin == 'true'">
-                <router-link :to="{ name: 'user' }" class="nav-link">
-                    {{ username }}
-                    <i class="fas fa-user"></i>
-                </router-link>
-                <li class="nav-item ">
-                    <a class="nav-link" @click="logOut">
+                    <br>
+                    <a class="nav-link mx-3" @click="logOut">
                         Đăng xuất
                         <i class="fas fa-sign-out"></i>
                     </a>
-                </li>
-            </div>
-            <div class="d-flex" v-else>
-                <router-link :to="{ name: 'login' }" class="nav-link">
-                    <li class="nav-item">
-                        Đăng nhập
-                        <i class="fas fa-sign-in"></i>
-                    </li>
-                </router-link>
-                <li class="nav-item">
-                    <router-link :to="{ name: 'user.add' }" class="nav-link">
-                        Đăng ký
-                        <i class="fas fa-sign-in"></i>
-                    </router-link>
-                </li>
+                </div> -->
             </div>
         </div>
     </nav>
@@ -64,6 +48,7 @@ export default {
     methods: {
         logOut() {
             localStorage.removeItem('username');
+            localStorage.removeItem('userid');
             localStorage.setItem('isLogin', false);
             this.$router.push({ name: "login" });
             this.$router.go()

@@ -52,6 +52,7 @@ export default {
 
         async addBook(data) {
             try {
+                this.book.user_id = localStorage.getItem('userid');
                 await BookService.create(data);
                 this.message = "Sách được thêm thành công.";
                 this.$router.push({ name: "book" });

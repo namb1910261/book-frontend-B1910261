@@ -5,6 +5,7 @@
             <Field name="name" type="text" class="form-control" v-model="categoryLocal.name" />
             <ErrorMessage name="name" class="error-feedback" />
         </div>
+        <br>
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button v-if="categoryLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteCategory">
