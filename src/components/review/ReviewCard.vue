@@ -1,11 +1,13 @@
 <script>
 import BookService from "@/services/book.service";
 import UserService from "@/services/user.service";
+import CategoryService from "@/services/category.service";
 export default {
     data() {
         return {
             books: [],
             users: [],
+            categorys: []
         };
     },
     props: {
@@ -26,10 +28,18 @@ export default {
                 console.log(error);
             }
         },
+        async retrieveCategorys() {
+            try {
+                this.categorys = await CategoryService.getAll();
+            } catch (error) {
+                console.log(error);
+            }
+        },
     },
     mounted() {
         this.retrieveBooks();
         this.retrieveUsers();
+        this.retrieveCategorys();
     },
 };
 </script>
