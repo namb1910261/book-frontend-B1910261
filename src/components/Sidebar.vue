@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" v-if="isLogin == 'true'"
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light"
         style="width: 38vh; height: 97vh;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none mx-4">
             <span class="fs-4"><i class="fas fa-book-open"></i> Review sách</span>

@@ -2,6 +2,11 @@
     <div v-if="user" class="page">
         <h4>Đăng ký</h4>
         <UserForm :user="user" @submit:user="addUser" />
+        <br>
+        <router-link :to="{ name: 'login' }" class="nav-link">
+            Đăng nhập
+        </router-link>
+        <br>
         <p>{{ message }}</p>
     </div>
 </template>

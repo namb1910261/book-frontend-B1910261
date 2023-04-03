@@ -1,9 +1,7 @@
 <script>
-import AppHeader from "@/components/AppHeader.vue";
 import Sidebar from "@/components/Sidebar.vue";
 export default {
   components: {
-    AppHeader,
     Sidebar,
   },
 };
@@ -16,7 +14,6 @@ export default {
         <Sidebar />
       </div>
       <div class="col-9 my-3">
-        <AppHeader />
         <router-view />
       </div>
     </div>
