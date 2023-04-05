@@ -65,8 +65,12 @@ export default {
             localStorage.removeItem('username');
             localStorage.removeItem('userid');
             localStorage.setItem('isLogin', false);
+
+            this.isLogin = 'false'
+            this.username = localStorage.getItem('username')
+
             this.$router.push({ name: "login" });
-            this.$router.go()
+            
             this.$forceUpdate();
         },
     }
