@@ -1,8 +1,14 @@
 <template>
-    <div v-if="book" class="page">
-        <h4>Hiệu chỉnh Sách</h4>
-        <BookForm :book="book" @submit:book="updateBook" @delete:book="deleteBook" :categorys="filteredCategorys" />
-        <p>{{ message }}</p>
+    <div v-if="book" class="m-3">
+        <div class="card">
+            <div class="card-header">
+                <h4>Hiệu chỉnh Sách</h4>
+            </div>
+            <div class="card-body">
+                <BookForm :book="book" @submit:book="updateBook" @delete:book="deleteBook" :categorys="filteredCategorys" />
+                <p>{{ message }}</p>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -18,7 +24,7 @@ export default {
     },
     data() {
         return {
-            categorys:[],   
+            categorys: [],
             book: null,
             message: "",
         };

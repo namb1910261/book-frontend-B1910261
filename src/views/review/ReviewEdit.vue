@@ -1,8 +1,14 @@
 <template>
-    <div v-if="review" class="page">
-        <h4>Hiệu chỉnh Review</h4>
-        <ReviewForm :review="review" @submit:review="updateReview" @delete:review="deleteReview" />
-        <p>{{ message }}</p>
+    <div v-if="review" class="m-3">
+        <div class="card mt-3">
+            <div class="card-header">
+                <h4>Hiệu chỉnh Review</h4>
+            </div>
+            <div class="card-body">
+                <ReviewForm :review="review" @submit:review="updateReview" @delete:review="deleteReview" />
+                <p>{{ message }}</p>
+            </div>
+        </div>
     </div>
 </template>
 <script>

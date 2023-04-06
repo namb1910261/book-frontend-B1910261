@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 38vh; height: 97vh;">
+    <!-- <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 38vh; height: 97vh;">
         <router-link :to="{ name: 'home' }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none mx-4">
             <span class="fs-4"><i class="fas fa-book-open"></i> Review sách</span>
         </router-link>
@@ -61,6 +61,100 @@
             <br>
             <p>{{ message }}</p>
         </div>
+    </div> -->
+
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
+                target="_blank">
+                <img src="assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold">Book review</span>
+            </a>
+        </div>
+        <hr class="horizontal dark mt-0">
+        <div class=" w-auto " id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'category' }"
+                        :class="{ active: this.$route.name == 'category', 'active': this.$route.name == 'category' }">
+                        <div class="me-3">
+                            <svg class="bi me-0" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            <i class="fas fa-list text-info"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Thể loại</span>
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'book' }"
+                        :class="{ active: this.$route.name == 'book', 'active': this.$route.name == 'book' }">
+                        <div class="me-3">
+                            <svg class="bi me-0" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            <i class="fas fa-book text-warning"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Sách</span>
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'review' }"
+                        :class="{ active: this.$route.name == 'review', 'active': this.$route.name == 'review' }">
+                        <div class="me-3">
+                            <svg class="bi me-0" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            <i class="fas fa-comments text-primary"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Review</span>
+                    </router-link>
+                </li>
+                <span v-if="isLogin == 'true'">
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Tài khoản</h6>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link " :to="{ name: 'user' }"
+                            :class="{ active: this.$route.name == 'user', 'active': this.$route.name == 'user' }">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">{{ username }}</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-link mx-3 logout btn" @click="logOut">
+                            Đăng xuất
+                            <i class="fas fa-sign-out"></i>
+                        </button>
+                    </li>
+                </span>
+            </ul>
+        </div>
+    </aside>
+    <div v-if="isLogin != 'true' && this.$route.name == 'login'">
+        <div v-if="user" class="page" id="loginpage">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4>Đăng nhập</h4>
+                </div>
+                <div class="card-body">
+                    <UserForm :user="user" @submit:user="checkUser" />
+                    <br>
+                    <router-link :to="{ name: 'user.add' }" class="nav-link" @click="setFalseLoginPage" @clicked="setloginpage">
+                        Đăng ký
+                    </router-link>
+                    <br>
+                    <p>{{ message }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -94,12 +188,12 @@ export default {
             localStorage.removeItem('username');
             localStorage.removeItem('userid');
             localStorage.setItem('isLogin', false);
-            
+
             this.isLogin = 'false'
             this.username = localStorage.getItem('username')
 
             this.$router.push({ name: "login" });
-            
+
             this.$forceUpdate();
         },
         async checkUser(data) {
@@ -147,9 +241,11 @@ export default {
 .logout {
     cursor: pointer;
 }
-#loginpage{
+
+#loginpage {
     position: absolute;
-    left: 594px;
-    bottom: 208px;
+    left: 700px;
+    bottom: 90px;
+    width: 500px;
 }
 </style>

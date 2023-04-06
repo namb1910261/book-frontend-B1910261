@@ -12,7 +12,7 @@
             <ErrorMessage name="content" class="error-feedback" />
         </div>
         <br>
-        <div class="form-group">
+        <div class="form-group d-flex gap-1">
             <button class="btn btn-primary">Lưu</button>
             <button v-if="reviewLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteReview">
                 Xóa

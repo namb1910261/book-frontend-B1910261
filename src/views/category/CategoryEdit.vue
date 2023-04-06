@@ -1,8 +1,14 @@
 <template>
     <div v-if="category" class="page">
-        <h4>Hiệu chỉnh Thể loại</h4>
-        <CategoryForm :category="category" @submit:category="updateCategory" @delete:category="deleteCategory" />
-        <p>{{ message }}</p>
+        <div class="card mt-3">
+            <div class="card-header">
+                <h4>Hiệu chỉnh Thể loại</h4>
+            </div>
+            <div class="card-body">
+                <CategoryForm :category="category" @submit:category="updateCategory" @delete:category="deleteCategory" />
+                <p>{{ message }}</p>
+            </div>
+        </div>
     </div>
 </template>
 <script>

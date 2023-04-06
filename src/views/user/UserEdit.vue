@@ -1,8 +1,14 @@
 <template>
     <div v-if="user" class="page">
-        <h4>Hiệu chỉnh User</h4>
-        <UserForm :user="user" @submit:user="updateUser" @delete:user="deleteUser" />
-        <p>{{ message }}</p>
+        <div class="card mt-3">
+            <div class="card-header">
+                <h4>Hiệu chỉnh User</h4>
+            </div>
+            <div class="card-body">
+                <UserForm :user="user" @submit:user="updateUser" @delete:user="deleteUser" />
+                <p>{{ message }}</p>
+            </div>
+        </div>
     </div>
 </template>
 <script>

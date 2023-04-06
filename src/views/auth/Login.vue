@@ -1,5 +1,5 @@
 <template>
-    <div v-if="user" class="page">
+    <!-- <div v-if="user" class="page"> -->
         <!-- <h4>Đăng nhập</h4>
         <UserForm :user="user" @submit:user="checkUser" />
         <br>
@@ -8,7 +8,7 @@
         </router-link>
         <br>
         <p>{{ message }}</p> -->
-    </div>
+    <!-- </div> -->
 </template>
 <script>
 import UserForm from "@/components/user/UserForm.vue";

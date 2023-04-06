@@ -1,13 +1,19 @@
 <template>
     <div v-if="user" class="page">
-        <h4>Đăng ký</h4>
-        <UserForm :user="user" @submit:user="addUser" />
         <br>
-        <router-link :to="{ name: 'login' }" class="nav-link">
-            Đăng nhập
-        </router-link>
-        <br>
-        <p>{{ message }}</p>
+        <div class="card mt-3">
+            <div class="card-header">
+                <h4>Đăng ký</h4>
+            </div>
+            <div class="card-body">
+                <UserForm :user="user" @submit:user="addUser" />
+                <router-link :to="{ name: 'login' }" class="nav-link">
+                    Đăng nhập
+                </router-link>
+                <br>
+                <p>{{ message }}</p>
+            </div>
+        </div>
     </div>
 </template>
 <script>

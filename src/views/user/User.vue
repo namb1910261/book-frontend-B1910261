@@ -4,10 +4,10 @@
             <InputSearch v-model="searchText" />
         </div>
         <div class="mt-3 col-md-6">
-            <h4>
+            <!-- <h4>
                 User
                 <i class="fas fa-user"></i>
-            </h4>
+            </h4> -->
             <UserList v-if="filteredUsersCount > 0" :users="filteredUsers"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có user nào.</p>
@@ -25,10 +25,6 @@
         </div>
         <div class="mt-3 col-md-6">
             <div v-if="activeUser">
-                <h4>
-                    Chi tiết User
-                    <i class="fas fa-address-card"></i>
-                </h4>
                 <UserCard :user="activeUser" />
                 <router-link :to="{
                     name: 'user.edit',

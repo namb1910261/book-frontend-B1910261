@@ -3,11 +3,11 @@
         <div class="col-md-10">
             <InputSearch v-model="searchText" />
         </div>
-        <div class="mt-3 col-md-4">
-            <h4>
+        <div class="mt-3 col-md-5">
+            <!-- <h4>
                 Review
                 <i class="fas fa-comments"></i>
-            </h4>
+            </h4> -->
             <ReviewList v-if="filteredReviewsCount > 0" :reviews="filteredReviews"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có review nào.</p>
@@ -25,10 +25,10 @@
         </div>
         <div class="mt-3 col-md-7">
             <div v-if="activeReview">
-                <h4>
+                <!-- <h4>
                     Chi tiết Review
                     <i class="fas fa-comments"></i>
-                </h4>
+                </h4> -->
                 <ReviewCard :review="activeReview" />
                 <router-link :to="{
                     name: 'review.edit',

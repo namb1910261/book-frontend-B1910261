@@ -3,11 +3,11 @@
         <div class="col-md-10">
             <InputSearch v-model="searchText" />
         </div>
-        <div class="mt-3 col-md-4">
-            <h4 class="card-label">
+        <div class="mt-3 col-md-5">
+            <!-- <h4 class="card-label">
                 Thể loại
                 <i class="fas fa-list-alt"></i>
-            </h4>
+            </h4> -->
             <CategoryList v-if="filteredCategorysCount > 0" :categorys="filteredCategorys"
                 v-model:activeIndex="activeIndex" />
             <p v-else>Không có thể loại nào.</p>
@@ -23,12 +23,9 @@
                 </button>
             </div>
         </div>
-        <div class="mt-3 col-md-7">
+        <div class="mt-3 col-md-6">
             <div v-if="activeCategory">
-                <h4>
-                    Chi tiết Thể loại
-                    <i class="fas fa-list-alt"></i>
-                </h4>
+                
                 <CategoryCard :category="activeCategory" />
                 <router-link :to="{
                     name: 'category.edit',

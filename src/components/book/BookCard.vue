@@ -36,7 +36,7 @@ export default {
 <template>
     <div class="d-flex my-1">
         <img :src="'./book_image/' + book.image" :alt="book.name">
-        <div class="card rounded-0 col-10">
+        <div class="card rounded-start col-10">
             <div class="card-header">
                 <b>{{ book.name }}</b>
             </div>
