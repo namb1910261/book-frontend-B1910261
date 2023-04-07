@@ -63,7 +63,9 @@
         </div>
     </div> -->
 
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <div class="min-height-300 bg position-absolute w-100" v-if="isLogin != 'true' || this.$route.name == 'login'"></div>
+    <img v-else src="/book_image/bg-02.jpg" class="card rounded-0 min-height-300 bg-primary position-absolute w-100">
+
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
         id="sidenav-main">
         <div class="sidenav-header">
@@ -71,7 +73,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
                 target="_blank">
-                <img src="assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">Book review</span>
             </a>
         </div>
@@ -138,16 +140,22 @@
             </ul>
         </div>
     </aside>
-    <div v-if="isLogin != 'true' && this.$route.name == 'login'">
-        <div v-if="user" class="page" id="loginpage">
-            <div class="card mt-3">
+    <div v-if="isLogin != 'true' && this.$route.name == 'login'" class="row">
+        <div v-if="user" class="page col-5 mt-3 " id="loginpage2">
+            <div class="card mt-3 col rounded-0 bg-transparent shadow-none">
+                <img class="col" src="book_image/bg-01.jpg" width="450">
+            </div>
+        </div>
+        <div v-if="user" class="page col-5" id="loginpage">
+            <div class="card rounded-0 mt-3">
                 <div class="card-header">
                     <h4>Đăng nhập</h4>
                 </div>
                 <div class="card-body">
                     <UserForm :user="user" @submit:user="checkUser" />
                     <br>
-                    <router-link :to="{ name: 'user.add' }" class="nav-link" @click="setFalseLoginPage" @clicked="setloginpage">
+                    <router-link :to="{ name: 'user.add' }" class="nav-link" @click="setFalseLoginPage"
+                        @clicked="setloginpage">
                         Đăng ký
                     </router-link>
                     <br>
@@ -244,8 +252,15 @@ export default {
 
 #loginpage {
     position: absolute;
-    left: 700px;
-    bottom: 90px;
+    left: 425px;
+    bottom: 84px;
+    width: 500px;
+}
+
+#loginpage2 {
+    position: absolute;
+    left: 900px;
+    bottom: 85px;
     width: 500px;
 }
 </style>

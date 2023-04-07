@@ -1,16 +1,16 @@
 <template>
-    <div class="page row">
-        <div class="col-md-10">
-            <InputSearch v-model="searchText" />
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <InputSearch v-model="searchText" :pagename="'User'"/>
         </div>
-        <div class="mt-3 col-md-6">
+        <div class="mt-3 col-md-5">
             <!-- <h4>
                 User
                 <i class="fas fa-user"></i>
             </h4> -->
             <UserList v-if="filteredUsersCount > 0" :users="filteredUsers"
                 v-model:activeIndex="activeIndex" />
-            <p v-else>Không có user nào.</p>
+            <p v-else class="text-white">Không có user nào.</p>
             <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới

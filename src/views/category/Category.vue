@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <div class="col-md-10">
-            <InputSearch v-model="searchText" />
+        <div class="col-md-12 p-0">
+            <InputSearch v-model="searchText" :pagename="'Thể loại'"/>
         </div>
         <div class="mt-3 col-md-5">
             <!-- <h4 class="card-label">
@@ -10,7 +10,7 @@
             </h4> -->
             <CategoryList v-if="filteredCategorysCount > 0" :categorys="filteredCategorys"
                 v-model:activeIndex="activeIndex" />
-            <p v-else>Không có thể loại nào.</p>
+            <p v-else class="text-white">Không có thể loại nào.</p>
             <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới

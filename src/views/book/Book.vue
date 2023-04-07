@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <div class="col-md-10">
-            <InputSearch v-model="searchText" />
+        <div class="col-md-12 p-0">
+            <InputSearch v-model="searchText" :pagename="'Sách'"/>
         </div>
         <div class="mt-3 col-md-5">
             <!-- <h4>
@@ -18,7 +18,7 @@
                     <i class="fas fa-plus"></i> Thêm mới
                 </button>
                 <button class="btn btn-sm btn-danger" @click="removeAllBooks">
-                    <i class="fas fa-trash"></i> Xóa tất cả
+                    <i class="fas fa-trash"></i> Xóa tất cả 
                 </button>
             </div>
         </div>
