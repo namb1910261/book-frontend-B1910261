@@ -13,7 +13,7 @@
         <div v-if="!userLocal._id">
             <div class="form-group">
                 <label for="password">Mật khẩu</label>
-                <Field name="password" type="password" class="form-control" v-model="userLocal.password"/>
+                <Field name="password" type="password" class="form-control" v-model="userLocal.password" />
                 <ErrorMessage name="password" class="error-feedback" />
             </div>
             <div class="form-group" v-if="$route.name != 'login'">
@@ -23,7 +23,12 @@
         </div>
         <br>
         <div class="form-group d-flex gap-1">
-            <button class="btn btn-primary">Lưu</button>
+            <button 
+                v-if="this.$route.name == 'login'" class="btn btn-primary">Đăng nhập</button>
+            <button 
+                v-else-if="this.$route.name == 'user.add'" class="btn btn-primary">Đăng ký</button>
+            <button 
+                v-else class="btn btn-primary">lưu</button>
             <button v-if="userLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteUser">
                 Xóa
             </button>
@@ -49,12 +54,12 @@ export default {
                 .string()
                 .required("Tên phải có giá trị.")
                 .min(2, "Tên phải ít nhất 2 ký tự.")
-                .max(50, "Tên có nhiều nhất 50 ký tự."),
+                .max(50, "Tên có nhiều nhất 50 ký tự.").nullable(),
             email: yup
                 .string()
+                .required("Email phải có giá trị.")
                 .email("E-mail không đúng.")
-                .max(50, "E-mail tối đa 50 ký tự."),
-
+                .max(50, "E-mail tối đa 50 ký tự.").nullable()
         });
         return {
             // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ

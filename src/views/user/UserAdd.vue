@@ -1,6 +1,6 @@
 <template>
-    <div class="row m-5">
-        <div class="card col-5 rounded-0">
+    <div class="row m-5 px-5">
+        <div class="card col-6 rounded-0">
             <div class="card-header">
                 <h4>Đăng ký</h4>
             </div>

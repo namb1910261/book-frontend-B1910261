@@ -63,8 +63,9 @@
         </div>
     </div> -->
 
-    <div class="min-height-300 bg position-absolute w-100" v-if="isLogin != 'true' || this.$route.name == 'login'"></div>
-    <img v-else src="/book_image/bg-02.jpg" class="card rounded-0 min-height-300 bg-primary position-absolute w-100">
+    <!-- <div class="min-height-300 bg-primary position-absolute w-100">
+    </div> -->
+    <img src="/book_image/bg-02.jpg" class="card rounded-0 min-height-300 bg-primary position-absolute w-100">
 
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
         id="sidenav-main">
@@ -154,8 +155,7 @@
                 <div class="card-body">
                     <UserForm :user="user" @submit:user="checkUser" />
                     <br>
-                    <router-link :to="{ name: 'user.add' }" class="nav-link" @click="setFalseLoginPage"
-                        @clicked="setloginpage">
+                    <router-link :to="{ name: 'user.add' }" class="nav-link" >
                         Đăng ký
                     </router-link>
                     <br>
