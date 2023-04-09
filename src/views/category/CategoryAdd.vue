@@ -22,6 +22,7 @@ export default {
         return {
             category: {
                 name: null,
+                user_id: localStorage.getItem('userid'),
             },
             message: "",
         };

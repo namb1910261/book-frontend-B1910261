@@ -52,6 +52,14 @@ export default {
                     <strong>Review:</strong>
                     {{ review.content }}
                 </div>
+                <div class="mt-3 d-flex gap-1">
+                    <strong>Người viết:</strong>
+                    <div v-for="(user) in users">
+                        <div v-if="review.user_id == user._id">
+                            {{ user.name }}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="d-flex">
@@ -106,27 +114,27 @@ export default {
         </div>
     </div>
     <!-- <div>
-            <div class="p-1">
-                <strong>Tên:</strong>
-                {{ review.name }}
-            </div>
-            <div class="p-1">
-                <strong>Review:</strong>
-                {{ review.content }}
-            </div>
-            <div class="p-1">
-                <strong>Sách:</strong>
-                <div v-for="(book) in books">
-                    <div v-if="review.book_id == book._id">
-                        {{ book.name }}
-                        <br>
-                        <strong>Hình:</strong>
-                        <br>
-                        <img :src="'./book_image/' + book.image" :alt="book.name">
+                <div class="p-1">
+                    <strong>Tên:</strong>
+                    {{ review.name }}
+                </div>
+                <div class="p-1">
+                    <strong>Review:</strong>
+                    {{ review.content }}
+                </div>
+                <div class="p-1">
+                    <strong>Sách:</strong>
+                    <div v-for="(book) in books">
+                        <div v-if="review.book_id == book._id">
+                            {{ book.name }}
+                            <br>
+                            <strong>Hình:</strong>
+                            <br>
+                            <img :src="'./book_image/' + book.image" :alt="book.name">
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div> -->
+            </div> -->
 </template>
 
 <style>

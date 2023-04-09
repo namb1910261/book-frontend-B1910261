@@ -1,15 +1,14 @@
 <template>
     <div class="row">
         <div class="col-md-12 p-0">
-            <InputSearch v-model="searchText" :pagename="'Review'"/>
+            <InputSearch v-model="searchText" :pagename="'Review'" />
         </div>
         <div class="mt-3 col-md-5">
             <!-- <h4>
                 Review
                 <i class="fas fa-comments"></i>
             </h4> -->
-            <ReviewList v-if="filteredReviewsCount > 0" :reviews="filteredReviews"
-                v-model:activeIndex="activeIndex" />
+            <ReviewList v-if="filteredReviewsCount > 0" :reviews="filteredReviews" v-model:activeIndex="activeIndex" />
             <p v-else class="text-white">Không có review nào.</p>
             <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
@@ -93,7 +92,10 @@ export default {
     methods: {
         async retrieveReviews() {
             try {
-                this.reviews = await ReviewService.getAll();
+                if (localStorage.getItem('role') == 'admin')
+                    this.reviews = await ReviewService.getAll();
+                else
+                    this.reviews = await ReviewService.findAllReviewByUserId(localStorage.getItem('userid'));
             } catch (error) {
                 console.log(error);
             }

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md-12 p-0">
-            <InputSearch v-model="searchText" :pagename="'Thể loại'"/>
+            <InputSearch v-model="searchText" :pagename="'Thể loại'" />
         </div>
         <div class="mt-3 col-md-5">
             <!-- <h4 class="card-label">
@@ -25,7 +25,7 @@
         </div>
         <div class="mt-3 col-md-6">
             <div v-if="activeCategory">
-                
+
                 <CategoryCard :category="activeCategory" />
                 <router-link :to="{
                     name: 'category.edit',
@@ -90,7 +90,10 @@ export default {
     methods: {
         async retrieveCategorys() {
             try {
-                this.categorys = await CategoryService.getAll();
+                if (localStorage.getItem('role') == 'admin')
+                    this.categorys = await CategoryService.getAll();
+                else
+                    this.categorys = await CategoryService.findAllCategoryByUserId(localStorage.getItem('userid'));
             } catch (error) {
                 console.log(error);
             }

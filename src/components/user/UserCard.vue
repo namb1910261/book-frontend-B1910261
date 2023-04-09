@@ -20,9 +20,13 @@ export default {
                 <strong>Tên:</strong>
                 {{ user.name }}
             </div>
-            <div class="mb-4 mx-4">
+            <div class="mx-4">
                 <strong>Email:</strong>
                 {{ user.email }}
+            </div>
+            <div class="mb-4 mx-4">
+                <strong>Vai trò:</strong>
+                {{ user.role }}
             </div>
         </div>
     </div>

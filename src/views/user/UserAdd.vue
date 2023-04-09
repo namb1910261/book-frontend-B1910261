@@ -32,6 +32,7 @@ export default {
                 name: null,
                 email: null,
                 password: null,
+                role: 'user'
             },
             message: "",
         };

@@ -102,7 +102,11 @@ export default {
     methods: {
         async retrieveBooks() {
             try {
-                this.books = await BookService.getAll();
+                if(localStorage.getItem('role') == 'admin')
+                    this.books = await BookService.getAll();
+                else 
+                    this.books = await BookService.findAllBookByUserId(localStorage.getItem('userid'));
+                console.log(this.book)
             } catch (error) {
                 console.log(error);
             }

@@ -155,7 +155,7 @@
                 <div class="card-body">
                     <UserForm :user="user" @submit:user="checkUser" />
                     <br>
-                    <router-link :to="{ name: 'user.add' }" class="nav-link" >
+                    <router-link :to="{ name: 'user.add' }" class="nav-link">
                         Đăng ký
                     </router-link>
                     <br>
@@ -188,13 +188,16 @@ export default {
             message: "",
             routename: this.$route.name,
             isLogin: localStorage.getItem('isLogin'),
-            username: localStorage.getItem('username')
+            username: localStorage.getItem('username'),
+            userid: localStorage.getItem('userid'),
+            role: localStorage.getItem('role')
         }
     },
     methods: {
         logOut() {
             localStorage.removeItem('username');
             localStorage.removeItem('userid');
+            localStorage.removeItem('role');
             localStorage.setItem('isLogin', false);
 
             this.isLogin = 'false'
@@ -227,10 +230,13 @@ export default {
                             else {
                                 localStorage.setItem('username', this.users[i].name);
                                 localStorage.setItem('userid', this.users[i]._id);
+                                localStorage.setItem('role', this.users[i].role);
                                 localStorage.setItem('isLogin', true);
 
                                 this.isLogin = 'true'
                                 this.username = localStorage.getItem('username')
+                                this.userid = localStorage.getItem('userid')
+                                this.role = localStorage.getItem('role')
 
                                 this.$router.push({ name: "category" });
                                 break;

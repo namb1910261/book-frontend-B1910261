@@ -14,11 +14,11 @@ export default {
 </script>
 <template>
     <!-- <ul class="list-group">
-        <li class="list-group-item" v-for="(user, index) in users" :key="user._id"
-            :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)">
-            {{ user.name }}
-        </li>
-    </ul> -->
+            <li class="list-group-item" v-for="(user, index) in users" :key="user._id"
+                :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)">
+                {{ user.name }}
+            </li>
+        </ul> -->
     <div class="card">
         <div class="card-header pb-0 p-3 d-flex justify-content-between">
             <h6 class="mb-0">User</h6>
@@ -33,7 +33,8 @@ export default {
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-sm " :class="{ 'text-primary': index === activeIndex }">{{ user.name }}</h6>
+                            <h6 class="mb-1 text-sm " :class="{ 'text-primary': index === activeIndex }">{{ user.name }}
+                            </h6>
                         </div>
                     </div>
                     <div class="d-flex">

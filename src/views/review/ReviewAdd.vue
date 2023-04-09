@@ -27,6 +27,7 @@ export default {
                 name: null,
                 content: null,
                 book_id: null,
+                user_id: localStorage.getItem('userid'),
             },
             message: "",
         };
