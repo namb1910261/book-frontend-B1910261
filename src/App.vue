@@ -42,7 +42,7 @@ export default {
   width: 1200px;
   margin: auto;
   position: absolute;
-  /* top:30px */
+  top:0px
 }
 
 .fade-enter-from,
