@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row page">
         <div class="col-md-12 p-0">
             <InputSearch v-model="searchText" :pagename="'Thể loại'" />
         </div>
@@ -125,8 +125,8 @@ export default {
 };
 </script>
 <style scoped>
-.page {
+/* .page {
     text-align: left;
     max-width: 750px;
-}
+} */
 </style>

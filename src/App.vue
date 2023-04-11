@@ -23,7 +23,14 @@ export default {
     <Sidebar />
     <main class="main-content position-relative border-radius-lg ">
       <div class="container-fluid py-1 px-3">
-        <router-view />
+        <router-view v-slot="{ Component }">
+          <transition 
+            enter-active-class="animate__animated animate__fadeInLeft"
+            leave-active-class="animate__animated animate__fadeOutLeft"
+            >
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </div>
     </main>
   </div>
@@ -31,6 +38,20 @@ export default {
 
 <style>
 .page {
-  max-width: 400px;
+  max-width: 1500px;
+  width: 1200px;
   margin: auto;
-}</style>
+  position: absolute;
+  /* top:30px */
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+</style>
