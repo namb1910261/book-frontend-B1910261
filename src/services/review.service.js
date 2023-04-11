@@ -21,6 +21,9 @@ class ReviewService {
     async delete(id) {
         return (await this.api.delete(`/${id}`)).data;
     }
+    async deleteByUserId(userid) {
+        return (await this.api.delete(`/reviews_user_id/delete/${userid}`)).data;
+    }
     async findAllReviewByUserId(userid) {
         return (await this.api.get(`/reviews_user_id/${userid}`)).data;
     }

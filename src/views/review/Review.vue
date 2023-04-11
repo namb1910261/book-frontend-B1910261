@@ -109,8 +109,14 @@ export default {
         async removeAllReviews() {
             if (confirm("Bạn muốn xóa tất cả Review?")) {
                 try {
-                    await ReviewService.deleteAll();
-                    this.refreshList();
+                    if (localStorage.getItem("role") == "admin") {
+                        await ReviewService.deleteAll();
+                        this.refreshList();
+                    }
+                    else {
+                        await ReviewService.deleteByUserId(localStorage.getItem('userid'));
+                        this.refreshList();
+                    }
                 } catch (error) {
                     console.log(error);
                 }

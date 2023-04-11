@@ -1,7 +1,7 @@
 <template>
     <div class="row page">
         <div class="col-md-12 p-0">
-            <InputSearch v-model="searchText" :pagename="'Sách'"/>
+            <InputSearch v-model="searchText" :pagename="'Sách'" />
         </div>
         <div class="mt-3 col-md-5">
             <!-- <h4>
@@ -18,7 +18,7 @@
                     <i class="fas fa-plus"></i> Thêm mới
                 </button>
                 <button class="btn btn-sm btn-danger" @click="removeAllBooks">
-                    <i class="fas fa-trash"></i> Xóa tất cả 
+                    <i class="fas fa-trash"></i> Xóa tất cả
                 </button>
             </div>
         </div>
@@ -31,20 +31,20 @@
                 <BookCard :book="activeBook" />
                 <span class="d-flex gap-1">
                     <router-link :to="{
-                    name: 'book.edit',
-                    params: { id: activeBook._id },
-                }">
-                    <button class="btn btn-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
-                </router-link>
+                        name: 'book.edit',
+                        params: { id: activeBook._id },
+                    }">
+                        <button class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Hiệu chỉnh</button>
+                    </router-link>
 
-                <router-link :to="{
-                    name: 'review.add',
-                    params: { id: activeBook._id },
-                }">
-                    <button class="btn btn-primary">
-                        <i class="fas fa-comments"></i> Tạo review</button>
-                </router-link>
+                    <router-link :to="{
+                        name: 'review.add',
+                        params: { id: activeBook._id },
+                    }">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-comments"></i> Tạo review</button>
+                    </router-link>
                 </span>
             </div>
         </div>
@@ -102,9 +102,9 @@ export default {
     methods: {
         async retrieveBooks() {
             try {
-                if(localStorage.getItem('role') == 'admin')
+                if (localStorage.getItem('role') == 'admin')
                     this.books = await BookService.getAll();
-                else 
+                else
                     this.books = await BookService.findAllBookByUserId(localStorage.getItem('userid'));
                 console.log(this.book)
             } catch (error) {
@@ -120,8 +120,14 @@ export default {
         async removeAllBooks() {
             if (confirm("Bạn muốn xóa tất cả Sách?")) {
                 try {
-                    await BookService.deleteAll();
-                    this.refreshList();
+                    if (localStorage.getItem("role") == "admin") {
+                        await BookService.deleteAll();
+                        this.refreshList();
+                    }
+                    else {
+                        await BookService.deleteByUserId(localStorage.getItem('userid'));
+                        this.refreshList();
+                    }
                 } catch (error) {
                     console.log(error);
                 }

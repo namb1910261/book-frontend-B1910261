@@ -107,8 +107,14 @@ export default {
         async removeAllCategorys() {
             if (confirm("Bạn muốn xóa tất cả Thể loại?")) {
                 try {
-                    await CategoryService.deleteAll();
-                    this.refreshList();
+                    if(localStorage.getItem("role")=="admin"){
+                        await CategoryService.deleteAll();
+                        this.refreshList();
+                    }
+                    else{
+                        await CategoryService.deleteByUserId(localStorage.getItem('userid'));
+                        this.refreshList();
+                    }
                 } catch (error) {
                     console.log(error);
                 }

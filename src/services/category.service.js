@@ -21,6 +21,9 @@ class CategoryService {
     async delete(id) {
         return (await this.api.delete(`/${id}`)).data;
     }
+    async deleteByUserId(userid) {
+        return (await this.api.delete(`/categorys_user_id/delete/${userid}`)).data;
+    }
     async findAllCategoryByUserId(userid) {
         return (await this.api.get(`/categorys_user_id/${userid}`)).data;
     }

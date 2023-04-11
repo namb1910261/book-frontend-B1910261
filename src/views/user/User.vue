@@ -105,7 +105,14 @@ export default {
         async removeAllUsers() {
             if (confirm("Bạn muốn xóa tất cả User?")) {
                 try {
-                    await UserService.deleteAll();
+                    if (localStorage.getItem("role") == "admin") {
+                        await UserService.deleteAll();
+                        this.refreshList();
+                    }
+                    else {
+                        await UserService.delete(localStorage.getItem("userid"));
+                        this.refreshList();
+                    }
                     this.refreshList();
                 } catch (error) {
                     console.log(error);
