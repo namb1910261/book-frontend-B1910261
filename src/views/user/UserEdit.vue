@@ -1,5 +1,5 @@
 <template>
-    <div v-if="user" class="page">
+    <div v-if="user" class="page" id="smallerfrom">
         <div class="card mt-3">
             <div class="card-header">
                 <h4>Hiệu chỉnh User</h4>
@@ -70,3 +70,9 @@ export default {
     },
 };
 </script>
+<style>
+#smallerfrom {
+    text-align: left;
+    max-width: 350px;
+}
+</style>

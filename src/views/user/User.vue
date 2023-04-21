@@ -129,9 +129,3 @@ export default {
     },
 };
 </script>
-<style scoped>
-/* .page {
-    text-align: left;
-    max-width: 750px;
-} */
-</style>

@@ -38,6 +38,10 @@ export default {
 </template>
 
 <style>
+body {
+  background-image: url("/book_image/bg-03.jpg");
+  background-repeat: repeat;
+}
 .page {
   max-width: 1500px;
   width: 1200px;

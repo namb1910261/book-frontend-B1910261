@@ -1,5 +1,5 @@
 <template>
-    <img src="/book_image/bg-02.jpg" class="card rounded-0 min-height-300 bg-primary position-absolute w-100">
+    <!-- <img src="/book_image/bg-02.jpg" class="card rounded-0 min-height-300 bg-primary position-absolute w-100"> -->
 
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
         id="sidenav-main">

@@ -68,28 +68,28 @@ export default {
                             <div v-if="review.book_id == book._id">
                                 <div class="d-flex">
                                     <img :src="'./book_image/' + book.image" :alt="book.name">
-                                    <div class="card rounded-start col-11">
-                                    <div class="card-header">
-                                        <b>{{ book.name }}</b>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div>
-                                                <div class="p-1">
-                                                    <strong>Tên:</strong>
-                                                    {{ book.name }}
-                                                </div>
-                                                <div class="p-1">
-                                                    <strong>Yêu thích:</strong>
-                                                    {{ book.favorite }}
-                                                </div>
-                                                <div class="p-1 d-flex">
-                                                    <strong>Thể loại:</strong>
-                                                    <div v-for="(category) in book.category_id" class="mx-1">
-                                                        <div v-for="(cate) in categorys">
-                                                            <div v-if="category == cate._id">
-                                                                {{ cate.name }}
-                                                            </div>
+                                    <div class="card rounded-start col-9">
+                                        <div class="card-header">
+                                            <b>{{ book.name }}</b>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="p-1">
+                                                        <strong>Tên:</strong>
+                                                        {{ book.name }}
+                                                    </div>
+                                                    <div class="p-1">
+                                                        <strong>Yêu thích:</strong>
+                                                        {{ book.favorite }}
+                                                    </div>
+                                                    <div class="p-1 d-flex">
+                                                        <strong>Thể loại:</strong>
+                                                        <div v-for="(category) in book.category_id" class="mx-1">
+                                                            <div v-for="(cate) in categorys">
+                                                                <div v-if="category == cate._id">
+                                                                    {{ cate.name }}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
