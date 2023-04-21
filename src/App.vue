@@ -19,6 +19,7 @@ export default {
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  
   <div id="app">
     <Sidebar />
     <main class="main-content position-relative border-radius-lg ">

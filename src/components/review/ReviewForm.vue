@@ -7,7 +7,7 @@
         </div>
         <div class="form-group">
             <label for="content">Nội dung</label>
-            <Field name="content" as="textarea" className="form-control" placeholder="Review"
+            <Field name="content" as="textarea" className="form-control" placeholder="Review" rows="13"
                 v-model="reviewLocal.content" />
             <ErrorMessage name="content" class="error-feedback" />
         </div>

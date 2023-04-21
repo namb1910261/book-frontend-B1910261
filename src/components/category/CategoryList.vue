@@ -13,12 +13,6 @@ export default {
 };
 </script>
 <template>
-    <!-- <ul class="list-group">
-        <li class="list-group-item" v-for="(category, index) in categorys" :key="category._id"
-            :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)">
-            {{ category.name }}
-        </li>
-    </ul> -->
     <div class="card">
         <div class="card-header pb-0 p-3 d-flex justify-content-between">
             <h6 class="mb-0">Thể loại</h6>

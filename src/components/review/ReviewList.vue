@@ -13,12 +13,6 @@ export default {
 };
 </script>
 <template>
-    <!-- <ul class="list-group">
-        <li class="list-group-item" v-for="(review, index) in reviews" :key="review._id"
-            :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)">
-            {{ review.name }}
-        </li>
-    </ul> -->
     <div class="card">
         <div class="card-header pb-0 p-3 d-flex justify-content-between">
             <h6 class="mb-0">Review</h6>

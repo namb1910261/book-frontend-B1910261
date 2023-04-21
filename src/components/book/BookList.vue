@@ -14,15 +14,6 @@ export default {
 </script>
 <template>
     <div class="card">
-        <!-- <div class="card-body">
-                <h5 class="card-title">Sách <i class="fas fa-book"></i></h5>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item" v-for="(book, index) in books" :key="book._id"
-                    :class="{ active: index === activeIndex }" @click="updateActiveIndex(index)">
-                    {{ book.name }}
-                </li>
-            </ul> -->
         <div class="card-header pb-0 p-3 d-flex justify-content-between">
             <h6 class="mb-0">Sách</h6>
             <i class="fas fa-book mx-4"></i>

@@ -16,28 +16,6 @@ export default {
 };
 </script>
 <template>
-    <!-- <div class="input-group"> -->
-<!-- <input type="text" class="form-control" placeholder="Nhập thông tin cần tìm" :value="modelValue"
-            @input="updateModelValue" @keyup.enter="submit" />
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" @click="submit">
-                    <i class="fas fa-search"></i> Tìm kiếm
-                </button>   
-            </div> -->
-    <!-- <div class="d-flex align-items-center w-100">
-                <div class="input-group">
-                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Tìm..."
-                    :value="modelValue" @input="updateModelValue" @keyup.enter="submit">
-                </div>''
-                <div class="input-group mt-3">
-                    <button class="btn btn-light" type="button" @click="submit">
-                        <i class="fas fa-search"></i> Tìm kiếm
-                    </button>
-                </div>
-            </div>
-        </div> -->
-    <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
         data-scroll="false">
         <div class="container-fluid py-1 px-3">
