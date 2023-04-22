@@ -15,7 +15,28 @@
         <hr class="horizontal dark mt-0">
         <div class=" w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <!-- navbar dành cho index -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Client</h6>
+                </li>
                 <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'index' }"
+                        :class="{ active: this.$route.name == 'index', 'active': this.$route.name == 'index' }">
+                        <div class="me-3">
+                            <svg class="bi me-0" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            <i class="fas fa-comments text-danger"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Index</span>
+                    </router-link>
+                </li>
+                <!-- end navbar dành cho index -->
+                <!-- navbar dành cho quản lý -->
+                <li class="nav-item mt-3" v-if="isLogin == 'true'">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Quản lý</h6>
+                </li>
+                <li class="nav-item" v-if="isLogin == 'true'">
                     <router-link class="nav-link" :to="{ name: 'category' }"
                         :class="{ active: this.$route.name == 'category', 'active': this.$route.name == 'category' }">
                         <div class="me-3">
@@ -27,7 +48,7 @@
                         <span class="nav-link-text ms-1">Thể loại</span>
                     </router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="isLogin == 'true'">
                     <router-link class="nav-link" :to="{ name: 'book' }"
                         :class="{ active: this.$route.name == 'book', 'active': this.$route.name == 'book' }">
                         <div class="me-3">
@@ -39,18 +60,20 @@
                         <span class="nav-link-text ms-1">Sách</span>
                     </router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="isLogin == 'true'">
                     <router-link class="nav-link" :to="{ name: 'review' }"
                         :class="{ active: this.$route.name == 'review', 'active': this.$route.name == 'review' }">
                         <div class="me-3">
                             <svg class="bi me-0" width="16" height="16">
                                 <use xlink:href="#home" />
                             </svg>
-                            <i class="fas fa-comments text-primary"></i>
+                            <i class="fas fa-comment text-primary"></i>
                         </div>
                         <span class="nav-link-text ms-1">Review</span>
                     </router-link>
                 </li>
+                <!-- end navbar dành cho quản lý -->
+                <!-- end navbar dành cho tài khoản -->
                 <span v-if="isLogin == 'true'">
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Tài khoản</h6>
@@ -72,6 +95,32 @@
                         </button>
                     </li>
                 </span>
+                <span v-if="isLogin != 'true'">
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Tài khoản</h6>
+                    </li>
+                    <router-link class="nav-link" :to="{ name: 'login' }"
+                        :class="{ active: this.$route.name == 'login', 'active': this.$route.name == 'login' }">
+                        <div class="me-3">
+                            <svg class="bi me-0" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            <i class="fas fa-sign-in text-info"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Đăng nhập</span>
+                    </router-link>
+                    <router-link class="nav-link" :to="{ name: 'user.add' }"
+                        :class="{ active: this.$route.name == 'user.add', 'active': this.$route.name == 'user.add' }">
+                        <div class="me-3">
+                            <svg class="bi me-0" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            <i class="fas fa-registered text-success"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Đăng ký</span>
+                    </router-link>
+                </span>
+                <!-- end navbar dành cho tài khoản -->
             </ul>
         </div>
     </aside>

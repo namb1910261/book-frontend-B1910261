@@ -113,28 +113,6 @@ export default {
             </div>
         </div>
     </div>
-    <!-- <div>
-                <div class="p-1">
-                    <strong>Tên:</strong>
-                    {{ review.name }}
-                </div>
-                <div class="p-1">
-                    <strong>Review:</strong>
-                    {{ review.content }}
-                </div>
-                <div class="p-1">
-                    <strong>Sách:</strong>
-                    <div v-for="(book) in books">
-                        <div v-if="review.book_id == book._id">
-                            {{ book.name }}
-                            <br>
-                            <strong>Hình:</strong>
-                            <br>
-                            <img :src="'./book_image/' + book.image" :alt="book.name">
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 </template>
 
 <style>

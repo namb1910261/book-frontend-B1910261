@@ -84,6 +84,12 @@ const routes = [
         component: () => import("@/views/review/ReviewAdd.vue"),
         props: true // Truyền các biến trong $route.params vào làm props
     },
+    // index
+    {
+        path: "/index",
+        name: "index",
+        component: () => import("@/views/Index.vue"),
+    },
     // login
     {
         path: "/login",
@@ -98,7 +104,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/user/add'];
+    const publicPages = ['/login', '/user/add', '/index'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('username');
   
