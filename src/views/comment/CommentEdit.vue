@@ -57,7 +57,7 @@ export default {
             if (confirm("Bạn muốn xóa Thể loại này?")) {
                 try {
                     await CommentService.delete(this.comment._id);
-                    this.$router.push({ name: "comment" });
+                    this.$router.go(-1);
                 } catch (error) {
                     console.log(error);
                 }

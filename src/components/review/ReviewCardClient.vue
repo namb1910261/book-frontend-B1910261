@@ -59,7 +59,7 @@ export default {
             try {
                 await CommentService.create(data);
                 this.message = "Comment được thêm thành công.";
-                this.$router.push({ name: "index" });
+                this.retrieveCommentsByReview()
             } catch (error) {
                 console.log(error);
             }

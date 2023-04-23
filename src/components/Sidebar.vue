@@ -233,7 +233,7 @@ export default {
                                 this.userid = localStorage.getItem('userid')
                                 this.role = localStorage.getItem('role')
 
-                                this.$router.push({ name: "category" });
+                                this.$router.push({ name: "index" });
                                 break;
                             }
                         }

@@ -60,7 +60,7 @@ export default {
                                 localStorage.setItem('userid', this.users[i]._id);
                                 localStorage.setItem('isLogin', true);
                                 
-                                this.$router.push({ name: "category" });
+                                this.$router.push({ name: "index" });
                                 break;
                             }
                         }
