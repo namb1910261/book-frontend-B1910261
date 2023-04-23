@@ -25,7 +25,7 @@
                     Chi tiết Review
                     <i class="fas fa-comments"></i>
                 </h4> -->
-                <ReviewCardClient :review="activeReview" />
+                <ReviewCardClient :review="activeReview" :userid="userid"/>
             </div>
         </div>
     </div>
@@ -47,6 +47,7 @@ export default {
             reviews: [],
             activeIndex: -1,
             searchText: "",
+            userid: localStorage.getItem('userid'),
         };
     },
     watch: {
@@ -73,7 +74,10 @@ export default {
         },
         activeReview() {
             if (this.activeIndex < 0) return null;
-            return this.filteredReviews[this.activeIndex];
+            else {
+                this.userid= localStorage.getItem('userid');
+                return this.filteredReviews[this.activeIndex];
+            }
         },
         filteredReviewsCount() {
             return this.filteredReviews.length;

@@ -19,11 +19,12 @@ export default {
                 review_id: this.review._id,
             },
             message: "",
-            commentByReview: []
+            commentByReview: [],
         };
     },
     props: {
         review: { type: Object, required: true },
+        userid: { type: String, required: true },
     },
     methods: {
         async retrieveBooks() {
@@ -147,17 +148,21 @@ export default {
                     <p><b>Các bình luận:</b></p>
                     <!-- {{ review._id }} -->
                     <ul class="list-group" v-for="(comt) in commentByReview">
-                        <li class="list-group-item px-0 border-0" v-if="comt.review_id == review._id">
+                        <li class="list-group-item border-0 px-0 d-flex align-items-center" v-if="comt.review_id == review._id">
                             <span v-for="(user) in users">
                                 <span v-if="comt.user_id == user._id">
                                     <b>{{ user.name }}</b>: {{ comt.content }}
                                 </span>
                             </span>
+                            <router-link class="ms-auto" :to="{
+                                    name: 'comment.edit',
+                                    params: { id: comt._id },
+                                }" v-if="comt.user_id == userid">
+                                <button class="badge bg-warning border-0">
+                                    <i class="fas fa-edit"></i> Hiệu chỉnh</button>
+                            </router-link>
                         </li>
                     </ul>
-                    <!-- <span v-else>
-                        <p>Không có bình luận</p>
-                    </span> -->
                 </div>
             </div>
         </div>

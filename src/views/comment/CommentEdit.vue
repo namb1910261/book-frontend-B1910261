@@ -48,7 +48,7 @@ export default {
             try {
                 await CommentService.update(this.comment._id, data);
                 this.message = "Thể loại được cập nhật thành công.";
-                this.$router.push({ name: "comment" });
+                this.$router.go(-1);
             } catch (error) {
                 console.log(error);
             }
