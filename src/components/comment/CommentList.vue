@@ -1,9 +1,11 @@
 <script>
 import UserService from "@/services/user.service";
+import ReviewService from "@/services/review.service";
 export default {
     data() {
         return {
             users: [],
+            reviews: [],
         };
     },
     props: {
@@ -19,12 +21,20 @@ export default {
                 console.log(error);
             }
         },
+        async retrieveReviews() {
+            try {
+                this.reviews = await ReviewService.getAll();
+            } catch (error) {
+                console.log(error);
+            }
+        },
         updateActiveIndex(index) {
             this.$emit("update:activeIndex", index);
         }
     },
     mounted() {
         this.retrieveUsers();
+        this.retrieveReviews();
     },
 };
 </script>
@@ -44,9 +54,14 @@ export default {
                         </div>
                         <div class="d-flex flex-column">
                             <h6 class="mb-1 text-sm " :class="{ 'text-primary': index === activeIndex }">
-                                <span v-for="(user) in users"><span></span>
+                                <div v-for="(user) in users"><span></span>
                                     <span v-if="comment.user_id == user._id">
                                         {{ user.name }}
+                                    </span>
+                                </div>
+                                <span v-for="(review) in reviews"><span></span>
+                                    <span v-if="comment.review_id == review._id">
+                                        {{ review.name }}
                                     </span>
                                 </span>
                             </h6>

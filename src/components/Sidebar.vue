@@ -67,7 +67,7 @@
                             <svg class="bi me-0" width="16" height="16">
                                 <use xlink:href="#home" />
                             </svg>
-                            <i class="fas fa-book text-primary"></i>
+                            <i class="fas fa-pen text-primary"></i>
                         </div>
                         <span class="nav-link-text ms-1">Review</span>
                     </router-link>
@@ -79,7 +79,7 @@
                             <svg class="bi me-0" width="16" height="16">
                                 <use xlink:href="#home" />
                             </svg>
-                            <i class="fas fa-comment text-success"></i>
+                            <i class="fas fa-comments text-success"></i>
                         </div>
                         <span class="nav-link-text ms-1">Comment</span>
                     </router-link>
