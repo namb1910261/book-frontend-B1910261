@@ -26,7 +26,7 @@
                             <svg class="bi me-0" width="16" height="16">
                                 <use xlink:href="#home" />
                             </svg>
-                            <i class="fas fa-comments text-danger"></i>
+                            <i class="fas fa-book-open text-danger"></i>
                         </div>
                         <span class="nav-link-text ms-1">Index</span>
                     </router-link>

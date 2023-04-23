@@ -25,7 +25,7 @@
                     Chi tiết Review
                     <i class="fas fa-comments"></i>
                 </h4> -->
-                <ReviewCard :review="activeReview" />
+                <ReviewCardClient :review="activeReview" />
                 <router-link :to="{
                         name: 'review.edit',
                         params: { id: activeReview._id },
@@ -36,13 +36,13 @@
     </div>
 </template>
 <script>
-import ReviewCard from "@/components/review/ReviewCard.vue";
+import ReviewCardClient from "@/components/review/ReviewCardClient.vue";
 import InputSearch from "@/components/InputSearch.vue";
 import ReviewList from "@/components/review/ReviewList.vue";
 import ReviewService from "@/services/review.service";
 export default {
     components: {
-        ReviewCard,
+        ReviewCardClient,
         InputSearch,
         ReviewList,
     },
