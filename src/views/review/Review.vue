@@ -31,7 +31,7 @@
                 <ReviewCard :review="activeReview" />
                 <router-link :to="{
                     name: 'review.edit',
-                    params: { id: activeReview._id },
+                    params: { id: activeReview._id },   
                 }">
                     <button class="btn btn-warning">
                         <i class="fas fa-edit"></i> Hiệu chỉnh</button>

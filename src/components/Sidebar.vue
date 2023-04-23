@@ -67,9 +67,21 @@
                             <svg class="bi me-0" width="16" height="16">
                                 <use xlink:href="#home" />
                             </svg>
-                            <i class="fas fa-comment text-primary"></i>
+                            <i class="fas fa-book text-primary"></i>
                         </div>
                         <span class="nav-link-text ms-1">Review</span>
+                    </router-link>
+                </li>
+                <li class="nav-item" v-if="isLogin == 'true'">
+                    <router-link class="nav-link" :to="{ name: 'comment' }"
+                        :class="{ active: this.$route.name == 'comment', 'active': this.$route.name == 'comment' }">
+                        <div class="me-3">
+                            <svg class="bi me-0" width="16" height="16">
+                                <use xlink:href="#home" />
+                            </svg>
+                            <i class="fas fa-comment text-success"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Comment</span>
                     </router-link>
                 </li>
                 <!-- end navbar dành cho quản lý -->

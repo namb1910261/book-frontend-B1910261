@@ -26,11 +26,6 @@
                     <i class="fas fa-comments"></i>
                 </h4> -->
                 <ReviewCardClient :review="activeReview" />
-                <router-link :to="{
-                        name: 'review.edit',
-                        params: { id: activeReview._id },
-                    }">
-                </router-link>
             </div>
         </div>
     </div>

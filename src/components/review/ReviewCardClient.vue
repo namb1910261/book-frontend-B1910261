@@ -2,12 +2,24 @@
 import BookService from "@/services/book.service";
 import UserService from "@/services/user.service";
 import CategoryService from "@/services/category.service";
+import CommentForm from "@/components/comment/CommentForm.vue";
+import CommentService from "@/services/comment.service";
 export default {
+    components: {
+        CommentForm,
+    },
     data() {
         return {
             books: [],
             users: [],
-            categorys: []
+            categorys: [],
+            comment: {
+                user_id: localStorage.getItem('userid'),
+                content: '',
+                review_id: this.review._id,
+            },
+            message: "",
+            commentByReview: []
         };
     },
     props: {
@@ -35,11 +47,28 @@ export default {
                 console.log(error);
             }
         },
+        async retrieveCommentsByReview() {
+            try {
+                this.commentByReview = await CommentService.getAll();
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async addComment(data) {
+            try {
+                await CommentService.create(data);
+                this.message = "Comment được thêm thành công.";
+                this.$router.push({ name: "index" });
+            } catch (error) {
+                console.log(error);
+            }
+        },
     },
     mounted() {
         this.retrieveBooks();
         this.retrieveUsers();
         this.retrieveCategorys();
+        this.retrieveCommentsByReview();
     },
 };
 </script>
@@ -109,6 +138,26 @@ export default {
                             {{ user.name }}
                         </div>
                     </div>
+                </div>
+                <br>
+                <strong>Bình luận:</strong>
+                <CommentForm :comment="comment" @submit:comment="addComment" />
+                <p>{{ message }}</p>
+                <div class="mt-3">
+                    <p><b>Các bình luận:</b></p>
+                    <!-- {{ review._id }} -->
+                    <ul class="list-group" v-for="(comt) in commentByReview">
+                        <li class="list-group-item px-0 border-0" v-if="comt.review_id == review._id">
+                            <span v-for="(user) in users">
+                                <span v-if="comt.user_id == user._id">
+                                    <b>{{ user.name }}</b>: {{ comt.content }}
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                    <!-- <span v-else>
+                        <p>Không có bình luận</p>
+                    </span> -->
                 </div>
             </div>
         </div>

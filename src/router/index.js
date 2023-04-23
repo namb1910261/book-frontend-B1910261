@@ -3,6 +3,7 @@ import Category from "@/views/category/Category.vue";
 import Book from "@/views/book/Book.vue";
 import User from "@/views/user/User.vue";
 import Review from "@/views/review/Review.vue";
+import Comment from "@/views/comment/Comment.vue";
 const routes = [
     // Not found 
     {
@@ -83,6 +84,23 @@ const routes = [
         name: "review.add",
         component: () => import("@/views/review/ReviewAdd.vue"),
         props: true // Truyền các biến trong $route.params vào làm props
+    },
+    // comment
+    {
+        path: "/comment",
+        name: "comment",
+        component: Comment,
+    },
+    {
+        path: "/comments/:id",
+        name: "comment.edit",
+        component: () => import("@/views/comment/CommentEdit.vue"),
+        props: true // Truyền các biến trong $route.params vào làm props
+    },
+    {
+        path: "/comment/add",
+        name: "comment.add",
+        component: () => import("@/views/comment/CommentAdd.vue"),
     },
     // index
     {
