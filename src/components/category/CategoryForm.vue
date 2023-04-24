@@ -2,13 +2,13 @@
     <Form @submit="submitCategory" :validation-schema="categoryFormSchema">
         <div class="form-group">
             <label for="name">Tên</label>
-            <Field name="name" type="text" class="form-control" v-model="categoryLocal.name" />
+            <Field name="name" type="text" class="form-control" v-model="category.name" />
             <ErrorMessage name="name" class="error-feedback" />
         </div>
         <br>
         <div class="form-group d-flex gap-1">
             <button class="btn btn-primary">Lưu</button>
-            <button v-if="categoryLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteCategory">
+            <button v-if="category._id" type="button" class="ml-2 btn btn-danger" @click="deleteCategory">
                 Xóa
             </button>
         </div>
@@ -44,10 +44,10 @@ export default {
     },
     methods: {
         submitCategory() {
-            this.$emit("submit:category", this.categoryLocal);
+            this.$emit("submit:category", this.category);
         },
         deleteCategory() {
-            this.$emit("delete:category", this.categoryLocal.id);
+            this.$emit("delete:category", this.category.id);
         },
     },
 };

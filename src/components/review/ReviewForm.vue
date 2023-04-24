@@ -38,8 +38,7 @@ export default {
             name: yup
                 .string()
                 .required("Tên phải có giá trị.")
-                .min(2, "Tên phải ít nhất 2 ký tự.")
-                .max(50, "Tên có nhiều nhất 50 ký tự.").nullable(),
+                .min(2, "Tên phải ít nhất 2 ký tự.").nullable(),
             content: yup
                 .string()
                 .required("Nội dung phải có giá trị.")

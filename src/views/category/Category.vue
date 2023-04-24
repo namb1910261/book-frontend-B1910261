@@ -27,13 +27,23 @@
             <div v-if="activeCategory">
 
                 <CategoryCard :category="activeCategory" />
-                <router-link :to="{
-                    name: 'category.edit',
-                    params: { id: activeCategory._id },
-                }">
+                <!-- <router-link :to="{
+                        name: 'category.edit',
+                        params: { id: activeCategory._id },
+                    }">
                     <button class="btn btn-warning">
                         <i class="fas fa-edit"></i> Hiệu chỉnh</button>
-                </router-link>
+                </router-link> -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h4>Hiệu chỉnh Thể loại</h4>
+                    </div>
+                    <div class="card-body">
+                        <CategoryForm :category="activeCategory" @submit:category="updateCategory"
+                            @delete:category="deleteCategory" />
+                        <p>{{ message }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -43,11 +53,13 @@ import CategoryCard from "@/components/category/CategoryCard.vue";
 import InputSearch from "@/components/InputSearch.vue";
 import CategoryList from "@/components/category/CategoryList.vue";
 import CategoryService from "@/services/category.service";
+import CategoryForm from "@/components/category/CategoryForm.vue";
 export default {
     components: {
         CategoryCard,
         InputSearch,
         CategoryList,
+        CategoryForm
     },
     // Đoạn mã xử lý đầy đủ sẽ trình bày bên dưới
     data() {
@@ -55,6 +67,8 @@ export default {
             categorys: [],
             activeIndex: -1,
             searchText: "",
+            category: null,
+            message: "",
         };
     },
     watch: {
@@ -80,8 +94,14 @@ export default {
             );
         },
         activeCategory() {
-            if (this.activeIndex < 0) return null;
-            return this.filteredCategorys[this.activeIndex];
+            if (this.activeIndex < 0) {
+                this.message=''
+                return null;
+            }
+            else{
+                this.message='';
+                return this.filteredCategorys[this.activeIndex];
+            }
         },
         filteredCategorysCount() {
             return this.filteredCategorys.length;
@@ -107,11 +127,11 @@ export default {
         async removeAllCategorys() {
             if (confirm("Bạn muốn xóa tất cả Thể loại?")) {
                 try {
-                    if(localStorage.getItem("role")=="admin"){
+                    if (localStorage.getItem("role") == "admin") {
                         await CategoryService.deleteAll();
                         this.refreshList();
                     }
-                    else{
+                    else {
                         await CategoryService.deleteByUserId(localStorage.getItem('userid'));
                         this.refreshList();
                     }
@@ -123,6 +143,27 @@ export default {
 
         goToAddCategory() {
             this.$router.push({ name: "category.add" });
+        },
+
+        async updateCategory(data) {
+            try {
+                await CategoryService.update(this.activeCategory._id, data);
+                this.message = "Thể loại được cập nhật thành công.";
+                this.$router.push({ name: "category" });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async deleteCategory() {
+            if (confirm("Bạn muốn xóa Thể loại này?")) {
+                try {
+                    await CategoryService.delete(this.activeCategory._id);
+                    this.retrieveCategorys()
+                    this.$router.push({ name: "category" });
+                } catch (error) {
+                    console.log(error);
+                }
+            }
         },
     },
     mounted() {

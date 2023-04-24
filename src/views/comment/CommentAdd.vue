@@ -2,7 +2,7 @@
     <div v-if="comment" class="page" id="smallerfrom">
         <div class="card mt-3">
             <div class="card-header">
-                <h4>Thêm Thể loại</h4>
+                <h4>Thêm Comment</h4>
             </div>
             <div class="card-body">
                 <CommentForm :comment="comment" @submit:comment="addComment"/>

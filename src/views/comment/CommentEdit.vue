@@ -2,7 +2,7 @@
     <div v-if="comment" class="page" id="smallerfrom">
         <div class="card mt-3">
             <div class="card-header">
-                <h4>Hiệu chỉnh Thể loại</h4>
+                <h4>Hiệu chỉnh Comment</h4>
             </div>
             <div class="card-body">
                 <CommentForm :comment="comment" @submit:comment="updateComment" @delete:comment="deleteComment" />

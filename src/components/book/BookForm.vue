@@ -21,7 +21,7 @@
             <label for="category_id">Thể loại</label>
             <div class="card-body">
                 <div class="form-check" v-for="(category) in categorys">
-                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category._id" v-model="cate"
+                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category._id" v-model="bookLocal.category_id"
                     @change="onCheckboxInput">
                     <label class="form-check-label" :for="category._id">
                         {{ category.name }}
@@ -64,8 +64,7 @@ export default {
             name: yup
                 .string()
                 .required("Tên phải có giá trị.")
-                .min(2, "Tên phải ít nhất 2 ký tự.")
-                .max(50, "Tên có nhiều nhất 50 ký tự.").nullable(),
+                .min(2, "Tên phải ít nhất 2 ký tự.").nullable(),
             image: yup
                 .string()
                 .required("Hình phải có giá trị.").nullable(),

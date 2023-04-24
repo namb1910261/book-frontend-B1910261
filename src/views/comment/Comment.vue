@@ -8,8 +8,7 @@
                 Thể loại
                 <i class="fas fa-list-alt"></i>
             </h4> -->
-            <CommentList v-if="filteredCommentsCount > 0" :comments="filteredComments"
-                v-model:activeIndex="activeIndex" />
+            <CommentList v-if="filteredCommentsCount > 0" :comments="filteredComments" v-model:activeIndex="activeIndex" />
             <p v-else class="text-white">Không có thể loại nào.</p>
             <div class="mt-3 d-flex justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
@@ -27,13 +26,22 @@
             <div v-if="activeComment">
 
                 <CommentCard :comment="activeComment" />
-                <router-link :to="{
+                <!-- <router-link :to="{
                     name: 'comment.edit',
                     params: { id: activeComment._id },
                 }">
                     <button class="btn btn-warning">
                         <i class="fas fa-edit"></i> Hiệu chỉnh</button>
-                </router-link>
+                </router-link> -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h4>Hiệu chỉnh Comment</h4>
+                    </div>
+                    <div class="card-body">
+                        <CommentForm :comment="activeComment" @submit:comment="updateComment" @delete:comment="deleteComment" />
+                        <p>{{ message }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -43,11 +51,13 @@ import CommentCard from "@/components/comment/CommentCard.vue";
 import InputSearch from "@/components/InputSearch.vue";
 import CommentList from "@/components/comment/CommentList.vue";
 import CommentService from "@/services/comment.service";
+import CommentForm from "@/components/comment/CommentForm.vue";
 export default {
     components: {
         CommentCard,
         InputSearch,
         CommentList,
+        CommentForm
     },
     // Đoạn mã xử lý đầy đủ sẽ trình bày bên dưới
     data() {
@@ -55,6 +65,8 @@ export default {
             comments: [],
             activeIndex: -1,
             searchText: "",
+            comment: null,
+            message: "",
         };
     },
     watch: {
@@ -80,8 +92,14 @@ export default {
             );
         },
         activeComment() {
-            if (this.activeIndex < 0) return null;
-            return this.filteredComments[this.activeIndex];
+            if (this.activeIndex < 0) {
+                this.message = ''
+                return null;
+            }
+            else{
+                this.message = ''
+                return this.filteredComments[this.activeIndex];
+            }
         },
         filteredCommentsCount() {
             return this.filteredComments.length;
@@ -107,11 +125,11 @@ export default {
         async removeAllComments() {
             if (confirm("Bạn muốn xóa tất cả Thể loại?")) {
                 try {
-                    if(localStorage.getItem("role")=="admin"){
+                    if (localStorage.getItem("role") == "admin") {
                         await CommentService.deleteAll();
                         this.refreshList();
                     }
-                    else{
+                    else {
                         await CommentService.deleteByUserId(localStorage.getItem('userid'));
                         this.refreshList();
                     }
@@ -123,6 +141,27 @@ export default {
 
         goToAddComment() {
             this.$router.push({ name: "comment.add" });
+        },
+
+        async updateComment(data) {
+            try {
+                await CommentService.update(this.activeComment._id, data);
+                this.message = "Thể loại được cập nhật thành công.";
+                this.$router.push("comment");
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async deleteComment() {
+            if (confirm("Bạn muốn xóa Thể loại này?")) {
+                try {
+                    await CommentService.delete(this.activeComment._id);
+                    this.retrieveComments()
+                    this.$router.push("comment");
+                } catch (error) {
+                    console.log(error);
+                }
+            }
         },
     },
     mounted() {
