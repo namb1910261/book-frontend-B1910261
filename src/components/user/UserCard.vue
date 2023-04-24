@@ -5,9 +5,7 @@ export default {
     },
 };
 </script>
-<template>
-    <div>
-    </div>
+<template class="page">
     <div class="d-flex my-1">
         <div class="card col-12">
             <div class="card-header">

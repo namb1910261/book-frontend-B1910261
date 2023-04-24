@@ -23,20 +23,23 @@
             </div>
         </div>
         <div class="mt-3 col-md-7">
-            <div v-if="activeReview">
-                <!-- <h4>
-                    Chi tiết Review
-                    <i class="fas fa-comments"></i>
-                </h4> -->
-                <ReviewCard :review="activeReview" />
-                <router-link :to="{
-                    name: 'review.edit',
-                    params: { id: activeReview._id },   
-                }">
-                    <button class="btn btn-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
-                </router-link>
-            </div>
+            <transition enter-active-class="animate__animated animate__fadeInUpBig"
+                leave-active-class="animate__animated animate__fadeOutUpBig">
+                <div v-if="activeReview">
+                    <!-- <h4>
+                        Chi tiết Review
+                        <i class="fas fa-comments"></i>
+                    </h4> -->
+                    <ReviewCard :review="activeReview" />
+                    <router-link :to="{
+                            name: 'review.edit',
+                            params: { id: activeReview._id },
+                        }">
+                        <button class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Hiệu chỉnh</button>
+                    </router-link>
+                </div>
+            </transition>
         </div>
     </div>
 </template>

@@ -24,27 +24,30 @@
             </div>
         </div>
         <div class="mt-3 col-md-6">
-            <div v-if="activeCategory">
+            <transition enter-active-class="animate__animated animate__fadeInUpBig"
+                leave-active-class="animate__animated animate__fadeOutUpBig">
+                <div v-if="activeCategory">
 
-                <CategoryCard :category="activeCategory" />
-                <!-- <router-link :to="{
+                    <CategoryCard :category="activeCategory" />
+                    <!-- <router-link :to="{
                         name: 'category.edit',
                         params: { id: activeCategory._id },
                     }">
                     <button class="btn btn-warning">
                         <i class="fas fa-edit"></i> Hiệu chỉnh</button>
                 </router-link> -->
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <h4>Hiệu chỉnh Thể loại</h4>
-                    </div>
-                    <div class="card-body">
-                        <CategoryForm :category="activeCategory" @submit:category="updateCategory"
-                            @delete:category="deleteCategory" />
-                        <p>{{ message }}</p>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h4>Hiệu chỉnh Thể loại</h4>
+                        </div>
+                        <div class="card-body">
+                            <CategoryForm :category="activeCategory" @submit:category="updateCategory"
+                                @delete:category="deleteCategory" />
+                            <p>{{ message }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -95,11 +98,11 @@ export default {
         },
         activeCategory() {
             if (this.activeIndex < 0) {
-                this.message=''
+                this.message = ''
                 return null;
             }
-            else{
-                this.message='';
+            else {
+                this.message = '';
                 return this.filteredCategorys[this.activeIndex];
             }
         },
@@ -171,3 +174,16 @@ export default {
     },
 };
 </script>
+<style>
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease-out;
+}
+
+</style>

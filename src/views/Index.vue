@@ -20,13 +20,16 @@
             </div>
         </div>
         <div class="mt-3 col-md-7">
-            <div v-if="activeReview">
-                <!-- <h4>
-                    Chi tiết Review
-                    <i class="fas fa-comments"></i>
-                </h4> -->
-                <ReviewCardClient :review="activeReview" :userid="userid"/>
-            </div>
+            <transition enter-active-class="animate__animated animate__fadeInUpBig"
+                leave-active-class="animate__animated animate__fadeOutUpBig">
+                <div v-if="activeReview">
+                    <!-- <h4>
+                        Chi tiết Review
+                        <i class="fas fa-comments"></i>
+                    </h4> -->
+                    <ReviewCardClient :review="activeReview" :userid="userid" />
+                </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -75,7 +78,7 @@ export default {
         activeReview() {
             if (this.activeIndex < 0) return null;
             else {
-                this.userid= localStorage.getItem('userid');
+                this.userid = localStorage.getItem('userid');
                 return this.filteredReviews[this.activeIndex];
             }
         },
@@ -102,3 +105,16 @@ export default {
     },
 };
 </script>
+<style>
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease-out;
+}
+
+</style>

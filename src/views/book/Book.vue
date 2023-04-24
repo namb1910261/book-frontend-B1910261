@@ -23,30 +23,33 @@
             </div>
         </div>
         <div class="mt-3 col-md-6">
-            <div v-if="activeBook">
-                <!-- <h4>
-                    Chi tiết Sách
-                    <i class="fas fa-book"></i>
-                </h4> -->
-                <BookCard :book="activeBook" />
-                <span class="d-flex gap-1">
-                    <router-link :to="{
-                        name: 'book.edit',
-                        params: { id: activeBook._id },
-                    }">
-                        <button class="btn btn-warning">
-                            <i class="fas fa-edit"></i> Hiệu chỉnh</button>
-                    </router-link>
+            <transition enter-active-class="animate__animated animate__fadeInUpBig"
+                leave-active-class="animate__animated animate__fadeOutUpBig">
+                <div v-if="activeBook">
+                    <!-- <h4>
+                        Chi tiết Sách
+                        <i class="fas fa-book"></i>
+                    </h4> -->
+                    <BookCard :book="activeBook" />
+                    <span class="d-flex gap-1">
+                        <router-link :to="{
+                                name: 'book.edit',
+                                params: { id: activeBook._id },
+                            }">
+                            <button class="btn btn-warning">
+                                <i class="fas fa-edit"></i> Hiệu chỉnh</button>
+                        </router-link>
 
-                    <router-link :to="{
-                        name: 'review.add',
-                        params: { id: activeBook._id },
-                    }">
-                        <button class="btn btn-primary">
-                            <i class="fas fa-comments"></i> Tạo review</button>
-                    </router-link>
-                </span>
-            </div>
+                        <router-link :to="{
+                                name: 'review.add',
+                                params: { id: activeBook._id },
+                            }">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-comments"></i> Tạo review</button>
+                        </router-link>
+                    </span>
+                </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -143,3 +146,14 @@ export default {
     },
 };
 </script>
+<style>
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease-out;
+}
+</style>

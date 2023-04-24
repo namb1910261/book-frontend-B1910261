@@ -23,26 +23,30 @@
             </div>
         </div>
         <div class="mt-3 col-md-6">
-            <div v-if="activeComment">
+            <transition enter-active-class="animate__animated animate__fadeInUpBig"
+                leave-active-class="animate__animated animate__fadeOutUpBig">
+                <div v-if="activeComment">
 
-                <CommentCard :comment="activeComment" />
-                <!-- <router-link :to="{
-                    name: 'comment.edit',
-                    params: { id: activeComment._id },
-                }">
-                    <button class="btn btn-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
-                </router-link> -->
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <h4>Hiệu chỉnh Comment</h4>
-                    </div>
-                    <div class="card-body">
-                        <CommentForm :comment="activeComment" @submit:comment="updateComment" @delete:comment="deleteComment" />
-                        <p>{{ message }}</p>
+                    <CommentCard :comment="activeComment" />
+                    <!-- <router-link :to="{
+                        name: 'comment.edit',
+                        params: { id: activeComment._id },
+                    }">
+                        <button class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Hiệu chỉnh</button>
+                    </router-link> -->
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h4>Hiệu chỉnh Comment</h4>
+                        </div>
+                        <div class="card-body">
+                            <CommentForm :comment="activeComment" @submit:comment="updateComment"
+                                @delete:comment="deleteComment" />
+                            <p>{{ message }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -96,7 +100,7 @@ export default {
                 this.message = ''
                 return null;
             }
-            else{
+            else {
                 this.message = ''
                 return this.filteredComments[this.activeIndex];
             }
@@ -169,3 +173,16 @@ export default {
     },
 };
 </script>
+<style>
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease-out;
+}
+
+</style>

@@ -33,7 +33,7 @@ export default {
     },
 };
 </script>
-<template>
+<template class="page">
     <div class="d-flex my-1">
         <img :src="'./book_image/' + book.image" :alt="book.name">
         <div class="card rounded-start col-10">

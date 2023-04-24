@@ -23,16 +23,19 @@
             </div>
         </div>
         <div class="mt-3 col-md-6">
-            <div v-if="activeUser">
-                <UserCard :user="activeUser" />
-                <router-link :to="{
-                    name: 'user.edit',
-                    params: { id: activeUser._id },
-                }">
-                    <button class="btn btn-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</button>
-                </router-link>
-            </div>
+            <transition enter-active-class="animate__animated animate__fadeInUpBig"
+                leave-active-class="animate__animated animate__fadeOutUpBig">
+                <div v-if="activeUser">
+                    <UserCard :user="activeUser" />
+                    <router-link :to="{
+                            name: 'user.edit',
+                            params: { id: activeUser._id },
+                        }">
+                        <button class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Hiệu chỉnh</button>
+                    </router-link>
+                </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -129,3 +132,14 @@ export default {
     },
 };
 </script>
+<style>
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease-out;
+}
+</style>

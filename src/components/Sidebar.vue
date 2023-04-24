@@ -253,7 +253,7 @@ export default {
 #loginpage {
     position: absolute;
     left: 425px;
-    bottom: 84px;
+    top: 16px;
     width: 500px;
 }
 
