@@ -24,7 +24,7 @@ export default {
                     v-for="(user, index) in users" :key="user._id">
                     <div class="d-flex align-items-center" @click="updateActiveIndex(index)">
                         <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user text-white opacity-10"></i>
                         </div>
                         <div class="d-flex flex-column">
                             <h6 class="mb-1 text-sm " :class="{ 'text-primary': index === activeIndex }">{{ user.name }}

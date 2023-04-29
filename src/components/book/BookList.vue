@@ -24,10 +24,10 @@ export default {
                     v-for="(book, index) in books" :key="book._id">
                     <div class="d-flex align-items-center" @click="updateActiveIndex(index)">
                         <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                            <i class="fas fa-book"></i>
+                            <i class="fas fa-book text-white opacity-10"></i>
                         </div>
                         <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-sm " :class="{'text-primary': index === activeIndex }">{{ book.name }}</h6>
+                            <h6 class="mb-1 text-sm " :class="{ 'text-primary': index === activeIndex }">{{ book.name }}</h6>
                         </div>
                     </div>
                     <div class="d-flex">
