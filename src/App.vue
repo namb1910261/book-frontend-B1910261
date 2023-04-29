@@ -50,6 +50,10 @@ body {
   top:0px
 }
 
+.list-group-item {
+  cursor: pointer;
+}
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
