@@ -5,7 +5,7 @@
                 <h4>Thêm Sách</h4>
             </div>
             <div class="card-body">
-                <BookForm :book="book" @submit:book="addBook" :categorys="filteredCategorys" />
+                <BookForm :book="book" @submit:book="addBook" :categorys="filteredCategorys" :cat="toEmptyArray"/>
                 <p>{{ message }}</p>
             </div>
         </div>
@@ -46,6 +46,9 @@ export default {
                 this.categoryStrings[index]
             );
         },
+        toEmptyArray() {
+            return [];
+        }
     },
     methods: {
         async retrieveCategorys() {

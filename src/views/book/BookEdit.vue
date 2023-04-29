@@ -5,7 +5,7 @@
                 <h4>Hiệu chỉnh Sách</h4>
             </div>
             <div class="card-body">
-                <BookForm :book="book" @submit:book="updateBook" @delete:book="deleteBook" :categorys="filteredCategorys" />
+                <BookForm :book="book" @submit:book="updateBook" @delete:book="deleteBook" :categorys="filteredCategorys" :cat="book.category_id"/>
                 <p>{{ message }}</p>
             </div>
         </div>

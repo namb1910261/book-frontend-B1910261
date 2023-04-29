@@ -21,7 +21,7 @@
             <label for="category_id">Thể loại</label>
             <div class="card-body">
                 <div class="form-check" v-for="(category) in categorys">
-                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category._id" v-model="bookLocal.category_id"
+                    <input class="form-check-input" type="checkbox" :id="category._id" :value="category._id" v-model="cate"
                     @change="onCheckboxInput">
                     <label class="form-check-label" :for="category._id">
                         {{ category.name }}
@@ -57,6 +57,7 @@ export default {
     emits: ["submit:book", "delete:book"],
     props: {
         categorys: { type: Array, default: [] },
+        cat: { type: Array, default: [] },
         book: { type: Object, required: true },
     },
     data() {
@@ -72,7 +73,7 @@ export default {
         return {
             // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
             // bookLocal để liên kết với các input trên form
-            cate: [],
+            cate: this.cat,
             bookLocal: this.book,
             bookFormSchema,
         };
