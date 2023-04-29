@@ -105,7 +105,7 @@ export default {
                                                             <div v-for="(category) in book.category_id" class="mx-1">
                                                                 <div v-for="(cate) in categorys">
                                                                     <div v-if="category == cate._id"
-                                                                        class="badge bg-primary">
+                                                                        class="badge bg-gradient-primary">
                                                                         {{ cate.name }}
                                                                     </div>
                                                                 </div>
