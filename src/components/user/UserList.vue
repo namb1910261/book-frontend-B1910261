@@ -29,6 +29,8 @@ export default {
                         <div class="d-flex flex-column">
                             <h6 class="mb-1 text-sm " :class="{ 'text-primary': index === activeIndex }">{{ user.name }}
                             </h6>
+                            <h6 class="mb-1 text-sm " :class="{ 'text-primary': index === activeIndex }">{{ user.role }}
+                            </h6>
                         </div>
                     </div>
                     <div class="d-flex">

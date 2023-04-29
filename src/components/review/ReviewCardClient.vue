@@ -83,7 +83,7 @@ export default {
                             <div v-if="review.book_id == book._id">
                                 <div class="d-flex">
                                     <img :src="'./book_image/' + book.image" :alt="book.name">
-                                    <div class="card rounded-start col-9">
+                                    <div class="card rounded-start col-9" style="width: 27rem;">
                                         <div class="card-header">
                                             <b>{{ book.name }}</b>
                                         </div>
@@ -94,19 +94,22 @@ export default {
                                                         <strong>Tên:</strong>
                                                         {{ book.name }}
                                                     </div>
-                                                    <div class="p-1">
+                                                    <div class="p-1 d-flex gap-2">
                                                         <strong>Yêu thích:</strong>
-                                                        {{ book.favorite }}
+                                                        <span v-if="book.favorite">
+                                                            <i class="fas fa-heart text-danger"></i>
+                                                        </span>
                                                     </div>
                                                     <div class="p-1 d-flex">
                                                         <strong>Thể loại:</strong>
-                                                        <div v-for="(category) in book.category_id" class="mx-1">
-                                                            <div v-for="(cate) in categorys">
-                                                                <div v-if="category == cate._id">
-                                                                    {{ cate.name }}
+                                                            <div v-for="(category) in book.category_id" class="mx-1">
+                                                                <div v-for="(cate) in categorys">
+                                                                    <div v-if="category == cate._id"
+                                                                        class="badge bg-primary">
+                                                                        {{ cate.name }}
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
                                                     </div>
                                                     <div class="p-1 d-flex">
                                                         <strong>User:</strong>
@@ -148,7 +151,8 @@ export default {
                     <p><b>Các bình luận:</b></p>
                     <!-- {{ review._id }} -->
                     <ul class="list-group" v-for="(comt) in commentByReview">
-                        <li class="list-group-item border-0 px-0 d-flex align-items-center" v-if="comt.review_id == review._id">
+                        <li class="list-group-item border-0 px-0 d-flex align-items-center"
+                            v-if="comt.review_id == review._id">
                             <span v-for="(user) in users">
                                 <span v-if="comt.user_id == user._id">
                                     <b>{{ user.name }}</b>: {{ comt.content }}

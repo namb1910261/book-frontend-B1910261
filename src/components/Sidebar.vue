@@ -86,17 +86,20 @@
                 <!-- end navbar dành cho quản lý -->
                 <!-- end navbar dành cho tài khoản -->
                 <span v-if="isLogin == 'true'">
-                    <li class="nav-item mt-3">
+                    <li class="nav-item mt-3 d-flex justify-content-between">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Tài khoản</h6>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link " :to="{ name: 'user' }"
+                        <router-link class="nav-link d-flex justify-content-between" :to="{ name: 'user' }"
                             :class="{ active: this.$route.name == 'user', 'active': this.$route.name == 'user' }">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">{{ username }}</span>
+                            <span class="d-flex align-items-center">
+                                <div
+                                    class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                                </div>
+                                <span class="nav-link-text ms-1">{{ username }}</span>
+                            </span>
+                            <span class="nav-link-text ms-1 badge bg-primary">{{ role }}</span>
                         </router-link>
                     </li>
                     <li class="nav-item">

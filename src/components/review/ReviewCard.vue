@@ -68,7 +68,7 @@ export default {
                             <div v-if="review.book_id == book._id">
                                 <div class="d-flex">
                                     <img :src="'./book_image/' + book.image" :alt="book.name">
-                                    <div class="card rounded-start col-9">
+                                    <div class="card rounded-start col-9" style="width: 27rem;">
                                         <div class="card-header">
                                             <b>{{ book.name }}</b>
                                         </div>
@@ -79,15 +79,17 @@ export default {
                                                         <strong>Tên:</strong>
                                                         {{ book.name }}
                                                     </div>
-                                                    <div class="p-1">
+                                                    <div class="p-1 d-flex gap-2">
                                                         <strong>Yêu thích:</strong>
-                                                        {{ book.favorite }}
+                                                        <span v-if="book.favorite">
+                                                            <i class="fas fa-heart text-danger"></i>
+                                                        </span>
                                                     </div>
                                                     <div class="p-1 d-flex">
                                                         <strong>Thể loại:</strong>
                                                         <div v-for="(category) in book.category_id" class="mx-1">
                                                             <div v-for="(cate) in categorys">
-                                                                <div v-if="category == cate._id">
+                                                                <div v-if="category == cate._id" class="badge bg-primary">
                                                                     {{ cate.name }}
                                                                 </div>
                                                             </div>
